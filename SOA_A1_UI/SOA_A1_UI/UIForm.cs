@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace SOA_A1_UI
 {
-    public partial class Form1 : Form
+    public partial class UIForm : Form
     {
-        public Form1()
+        public UIForm()
         {
             InitializeComponent();
         }

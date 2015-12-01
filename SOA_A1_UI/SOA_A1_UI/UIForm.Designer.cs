@@ -1,6 +1,6 @@
 ﻿namespace SOA_A1_UI
 {
-    partial class Form1
+    partial class UIForm
     {
         /// <summary>
         /// Required designer variable.
