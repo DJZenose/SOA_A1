@@ -171,6 +171,7 @@
             this.ItemBox.Name = "ItemBox";
             this.ItemBox.Size = new System.Drawing.Size(118, 259);
             this.ItemBox.TabIndex = 15;
+            this.ItemBox.Tag = "";
             // 
             // LoginBtn
             // 
