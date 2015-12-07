@@ -11,7 +11,6 @@ namespace Purchase_Totaller_BL
         public virtual double[] getTotal(string regionArg, double totalUnmodified)
         {
             int regionNum = 0;
-            double finalTotal = 0;
             double[] finalValues = new double[5];
             double[] PST = new double[] { 1, 1, 1, 1.1, 1.095, 1, 1.07, 1.05, 1, 1, 1, 1, 1 };
             double[] HST = new double[] { 1.13, 1.15, 1.13, 1, 1, 1.13, 1, 1, 1, 1.12, 1, 1 , 1};
@@ -67,9 +66,9 @@ namespace Purchase_Totaller_BL
                         break;
                 }
                 finalValues[0] = totalUnmodified;
-                finalValues[1] = totalUnmodified * PST[regionNum] - 1;
-                finalValues[2] = totalUnmodified * HST[regionNum] - 1;
-                finalValues[3] = totalUnmodified * GST[regionNum] - 1;
+                finalValues[1] = totalUnmodified * (PST[regionNum] - 1);
+                finalValues[2] = totalUnmodified * (HST[regionNum] - 1);
+                finalValues[3] = totalUnmodified * (GST[regionNum] - 1);
                 finalValues[4] = totalUnmodified * PST[regionNum] * HST[regionNum] * GST[regionNum];
             }
             else if (totalUnmodified <= 0)
