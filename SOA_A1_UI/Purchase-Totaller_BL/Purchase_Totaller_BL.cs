@@ -77,7 +77,7 @@ namespace Purchase_Totaller_BL
                 throw ex;
             }
             else
-            {
+            {[-]
                 Exception ex = new Exception("Invalid input. Region code does not exist.");
                 throw ex;
             }

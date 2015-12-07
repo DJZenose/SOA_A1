@@ -1,32 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-using System.Net;
-using System.Text;
 
-namespace PurchaseTotallerServer
+namespace Service
 {
-    public class Listener
+    // State object for reading client data asynchronously
+    public class StateObject
     {
+        // Client  socket.
+        public Socket workSocket = null;
+        // Size of receive buffer.
+        public const int BufferSize = 1024;
+        // Receive buffer.
+        public byte[] buffer = new byte[BufferSize];
+        // Received data string.
+        public StringBuilder sb = new StringBuilder();
+    }
+
+    public class AsynchronousSocketListener
+    {
+        // Thread signal.
         public static ManualResetEvent allDone = new ManualResetEvent(false);
 
-        public Listener()
+        public AsynchronousSocketListener()
         {
-        }
-
-        public class StateObject
-        {
-            // Client  socket.
-            public Socket workSocket = null;
-            // Size of receive buffer.
-            public const int BufferSize = 1024;
-            // Receive buffer.
-            public byte[] buffer = new byte[BufferSize];
-            // Received data string.
-            public StringBuilder sb = new StringBuilder();
         }
 
         public static void StartListening()
@@ -39,7 +40,7 @@ namespace PurchaseTotallerServer
             // running the listener is "host.contoso.com".
             IPHostEntry ipHostInfo = Dns.Resolve(Dns.GetHostName());
             IPAddress ipAddress = ipHostInfo.AddressList[0];
-            IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 8000);
+            IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 11000);
 
             // Create a TCP/IP socket.
             Socket listener = new Socket(AddressFamily.InterNetwork,
@@ -49,6 +50,7 @@ namespace PurchaseTotallerServer
             try
             {
                 listener.Bind(localEndPoint);
+                listener.Listen(100);
 
                 while (true)
                 {
@@ -73,7 +75,6 @@ namespace PurchaseTotallerServer
 
             Console.WriteLine("\nPress ENTER to continue...");
             Console.Read();
-
         }
 
         public static void AcceptCallback(IAsyncResult ar)
@@ -168,6 +169,5 @@ namespace PurchaseTotallerServer
             StartListening();
             return 0;
         }
-
     }
 }
