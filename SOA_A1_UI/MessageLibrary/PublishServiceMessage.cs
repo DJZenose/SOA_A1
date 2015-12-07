@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using DataClass;
 
 namespace MessageLibrary
 {
@@ -13,7 +16,10 @@ namespace MessageLibrary
         {
             string message;
 
-            message = "DRC|PUB-SERVICE|<" + teamName + ">|<" + teamID + ">|" + "\n" +
+            IFormatter formatter = new BinaryFormatter();
+            Data data = (Data)formatter.Deserialize(serializedClass);
+
+            message = "DRC|PUB-SERVICE|<" + data + ">|<" + teamID + ">|" + "\n" +
                     "SRV|<" + tagName + ">|<" + serviceName + ">|<" + securityLevel + ">|<" + numArgs + ">|<" + numResponses + ">|<" + description + ">|" + "\n" +
                     "ARG|<" + argPos + ">|<" + argName + ">|<" + argType + ">|[mandatory|optional]||" + "\n" +
                     "ARG|<" + argPos + ">|<" + argName + ">|<" + argType + ">|[mandatory|optional]||" + "\n" +
