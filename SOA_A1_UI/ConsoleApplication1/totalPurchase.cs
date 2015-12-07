@@ -6,13 +6,5 @@ using System.Threading.Tasks;
 
 namespace ConsoleApplication1
 {
-    class totalPurchase
-    {
-        string teamName = "ErbMcQThib";
 
-        public string RegisterTeamMessage ()
-        {
-
-        }
-    }
 }
