@@ -8,24 +8,24 @@ namespace DataClass
 {
     public class Data
     {
-        double total;
-        string regionCode;
-        string teamName;
-        string teamID;
-        string serviceTag;
-        string serviceName;
-        int securityLevel;
-        int numArg;
-        int numResp;
-        string description;
-        int[] argPosition = new int[2];
-        string[] argName = new string[2];
-        string[] argDataType = new string[2];       
-        int[] responsePos = new int [5];
-        string[] responseName = new string[5];
-        string[] resDataType = new string[5];
-        string publishIP;
-        int publishPort;
+        public double total;
+        public string regionCode;
+        public string teamName;
+        public string teamID;
+        public string serviceTag;
+        public string serviceName;
+        public int securityLevel;
+        public int numArg;
+        public int numResp;
+        public string description;
+        public int[] argPosition = new int[2];
+        public string[] argName = new string[2];
+        public string[] argDataType = new string[2];
+        public int[] responsePos = new int [5];
+        public string[] responseName = new string[5];
+        public string[] resDataType = new string[5];
+        public string publishIP;
+        public int publishPort;
 
         public Data()
         {
