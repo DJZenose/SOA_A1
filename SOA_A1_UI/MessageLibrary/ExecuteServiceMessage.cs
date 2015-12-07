@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataClass;
 
 namespace MessageLibrary
 {
@@ -14,9 +15,18 @@ namespace MessageLibrary
 
         }
 
-        public string ParseExecuteServiceMessage()
+        public Data ParseExecuteServiceMessage(string dataToParse)
         {
-            return "";
+            Data dataParsed = new Data();
+            int numArgs;
+            char[] delimiters = new char[] { '|' };
+            string[] dataUnassigned = dataToParse.Split(delimiters);
+
+            dataParsed.teamName = dataUnassigned[2];
+            dataParsed.teamID = dataUnassigned[3];
+            numArgs = Convert.ToInt32(dataUnassigned[6]);
+
+            return dataParsed;
         }
     }
 }

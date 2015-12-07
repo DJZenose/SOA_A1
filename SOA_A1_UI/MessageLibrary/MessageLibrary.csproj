@@ -48,6 +48,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnregisterTeamMessage.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataClass\DataClass.csproj">
+      <Project>{ffae9117-1464-4d63-a316-6ef0aea6d6b5}</Project>
+      <Name>DataClass</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
