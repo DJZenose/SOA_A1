@@ -12,10 +12,10 @@ namespace MessageLibrary
         {
             string message;
 
-            message = "DRC|PUB-SERVICE|<" + teamName + ">|<" + teamID + ">|";
-            message = "SRV|<" + tagName + ">|<" + serviceName + ">|<" + securityLevel + ">|<" + numArgs + ">|<" + numResponses + ">|<" + description + ">|";
-            message = "ARG|<" + argPos + ">|<" + argName + ">|<" + argType + ">|[mandatory|optional]||";
-            message = ". . .";
+            message = "DRC|PUB-SERVICE|<" + teamName + ">|<" + teamID + ">|" + "\n" +
+                    "SRV|<" + tagName + ">|<" + serviceName + ">|<" + securityLevel + ">|<" + numArgs + ">|<" + numResponses + ">|<" + description + ">|" + "\n" +
+                    "ARG|<" + argPos + ">|<" + argName + ">|<" + argType + ">|[mandatory|optional]||" + "\n" +
+                    "ARG|<" + argPos + ">|<" + argName + ">|<" + argType + ">|[mandatory|optional]||" + "\n" +
             message = "RSP|<" + respPos + ">|<" + respName + ">|<" + respType + ">||";
             message = ". . .";
             message = "MCH|<" + psIP + ">|<" + pPort + ">|";
