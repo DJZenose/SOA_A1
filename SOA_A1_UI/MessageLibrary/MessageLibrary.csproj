@@ -40,8 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExecuteServiceMessage.cs" />
+    <Compile Include="PublishServiceMessage.cs" />
+    <Compile Include="QueryServiceMessage.cs" />
+    <Compile Include="QueryTeamMessage.cs" />
     <Compile Include="RegisterTeamMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnregisterTeamMessage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
