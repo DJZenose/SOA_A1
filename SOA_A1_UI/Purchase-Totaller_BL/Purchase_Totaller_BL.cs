@@ -1,0 +1,74 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Purchase_Totaller_BL
+{
+    public class Totaller
+    {
+
+        public virtual double getTotal(string regionArg, double totalUnmodified)
+        {
+            int regionNum = 0;
+            double finalTotal = 0;
+            double[] PST = new double[] { 1, 1, 1, 1.1, 1.095, 1, 1.07, 1.05, 1, 1, 1, 1, 1 };
+            double[] HST = new double[] { 1.13, 1.15, 1.13, 1, 1, 1.13, 1, 1, 1, 1.12, 1, 1 , 1};
+            double[] GST = new double[] { 1, 1, 1, 1.05, 1.05, 1, 1.05, 1.05, 1.05, 1, 1.05, 1.05, 1.05 };
+
+
+            if (regionArg == "NL" || regionArg == "NS" || regionArg == "NB" || regionArg == "PE" || regionArg == "QZ" ||
+                regionArg == "ON" || regionArg == "MB" || regionArg == "SK" || regionArg == "AB" || regionArg == "BC" ||
+                regionArg == "YT" || regionArg == "NT" || regionArg == "NU" )
+            {
+                switch (regionArg)
+                {
+                    case "NL":
+                        regionNum = 0;
+                        break;
+                    case "NS":
+                        regionNum = 1;
+                        break;
+                    case "NB":
+                        regionNum = 2;
+                        break;
+                    case "PE":
+                        regionNum = 3;
+                        break;
+                    case "QZ":
+                        regionNum = 4;
+                        break;
+                    case "OB":
+                        regionNum = 5;
+                        break;
+                    case "MB":
+                        regionNum = 6;
+                        break;
+                    case "SK":
+                        regionNum = 7;
+                        break;
+                    case "AB":
+                        regionNum = 8;
+                        break;
+                    case "BC":
+                        regionNum = 9;
+                        break;
+                    case "YT":
+                        regionNum = 10;
+                        break;
+                    case "NT":
+                        regionNum = 11;
+                        break;
+                    case "NU":
+                        regionNum = 12;
+                        break;
+                    default:
+                        break;
+                }
+                finalTotal = totalUnmodified * PST[regionNum] * HST[regionNum] * GST[regionNum];
+            }
+            return finalTotal;
+        }
+    }
+}
