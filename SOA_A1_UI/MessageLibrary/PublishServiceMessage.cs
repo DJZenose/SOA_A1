@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace MessageLibrary
 {
     class PublishServiceMessage
     {
-        public  string SendPublishServiceMessage(string teamName, string teamID, string tagName, string serviceName, string securityLevel, int numArgs, int numResponses, string description, string argPos, string argName, string argType, string respPos, string respName, string respType, string psIP, string pPort)
+        public  string SendPublishServiceMessage(Stream serializedClass)
         {
             string message;
 
@@ -16,9 +17,12 @@ namespace MessageLibrary
                     "SRV|<" + tagName + ">|<" + serviceName + ">|<" + securityLevel + ">|<" + numArgs + ">|<" + numResponses + ">|<" + description + ">|" + "\n" +
                     "ARG|<" + argPos + ">|<" + argName + ">|<" + argType + ">|[mandatory|optional]||" + "\n" +
                     "ARG|<" + argPos + ">|<" + argName + ">|<" + argType + ">|[mandatory|optional]||" + "\n" +
-            message = "RSP|<" + respPos + ">|<" + respName + ">|<" + respType + ">||";
-            message = ". . .";
-            message = "MCH|<" + psIP + ">|<" + pPort + ">|";
+                    "RSP|<" + respPos + ">|<" + respName + ">|<" + respType + ">||" + "\n" +
+                    "RSP|<" + respPos + ">|<" + respName + ">|<" + respType + ">||" + "\n" +
+                    "RSP|<" + respPos + ">|<" + respName + ">|<" + respType + ">||" + "\n" +
+                    "RSP|<" + respPos + ">|<" + respName + ">|<" + respType + ">||" + "\n" +
+                    "RSP|<" + respPos + ">|<" + respName + ">|<" + respType + ">||" + "\n" +
+                    "MCH|<" + psIP + ">|<" + pPort + ">|";
 
             return message;
         }
