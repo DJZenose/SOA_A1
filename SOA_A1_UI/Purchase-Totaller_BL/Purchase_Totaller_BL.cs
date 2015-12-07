@@ -8,7 +8,6 @@ namespace Purchase_Totaller_BL
 {
     public class Totaller
     {
-
         public virtual double getTotal(string regionArg, double totalUnmodified)
         {
             int regionNum = 0;
@@ -18,9 +17,9 @@ namespace Purchase_Totaller_BL
             double[] GST = new double[] { 1, 1, 1, 1.05, 1.05, 1, 1.05, 1.05, 1.05, 1, 1.05, 1.05, 1.05 };
 
 
-            if (regionArg == "NL" || regionArg == "NS" || regionArg == "NB" || regionArg == "PE" || regionArg == "QZ" ||
+            if ((regionArg == "NL" || regionArg == "NS" || regionArg == "NB" || regionArg == "PE" || regionArg == "QZ" ||
                 regionArg == "ON" || regionArg == "MB" || regionArg == "SK" || regionArg == "AB" || regionArg == "BC" ||
-                regionArg == "YT" || regionArg == "NT" || regionArg == "NU" )
+                regionArg == "YT" || regionArg == "NT" || regionArg == "NU" ) && totalUnmodified > 0)
             {
                 switch (regionArg)
                 {
@@ -67,6 +66,16 @@ namespace Purchase_Totaller_BL
                         break;
                 }
                 finalTotal = totalUnmodified * PST[regionNum] * HST[regionNum] * GST[regionNum];
+            }
+            else if (totalUnmodified <= 0)
+            {
+                Exception ex = new Exception("Invalid input. Total unmodified must be greater than 0.");
+                throw ex;
+            }
+            else
+            {
+                Exception ex = new Exception("Invalid input. Region code does not exist.");
+                throw ex;
             }
             return finalTotal;
         }
