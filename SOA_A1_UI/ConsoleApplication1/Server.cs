@@ -91,11 +91,14 @@ namespace Service
             state.workSocket = handler;
             handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
                 new AsyncCallback(ReadCallback), state);
+
         }
 
         public static void ReadCallback(IAsyncResult ar)
         {
             String content = String.Empty;
+            char[] finalDelCA = new char[] { (char)28, (char)13, (char)10 };
+            string finalDel = new string(finalDelCA);
 
             // Retrieve the state object and the handler socket
             // from the asynchronous state object.
@@ -114,17 +117,16 @@ namespace Service
                 // Check for end-of-file tag. If it is not there, read 
                 // more data.
                 content = state.sb.ToString();
-                if (content.IndexOf("<EOF>") > -1)
+                if (content.IndexOf(finalDel) > -1)
                 {
-                    // All the data has been read from the 
-                    // client. Display it on the console.
                     Console.WriteLine("Read {0} bytes from socket. \n Data : {1}",
                         content.Length, content);
-                    // Echo the data back to the client.
-                    Send(handler, content);
+                    parseContent(handler, content);
                 }
                 else
                 {
+                    Console.WriteLine("Read {0} bytes from socket. \n Data : {1}",
+                        content.Length, content);
                     // Not all data received. Get more.
                     handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
                     new AsyncCallback(ReadCallback), state);
@@ -132,7 +134,12 @@ namespace Service
             }
         }
 
-        private static void Send(Socket handler, String data)
+        private static void parseContent(Socket handler, String data)
+        {
+
+        }
+
+        private static void SendToClient(Socket handler, String data)
         {
             // Convert the string data to byte data using ASCII encoding.
             byte[] byteData = Encoding.ASCII.GetBytes(data);
