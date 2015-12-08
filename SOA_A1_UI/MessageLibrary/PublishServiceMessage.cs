@@ -19,6 +19,9 @@ namespace MessageLibrary
 {
     public class PublishServiceMessage
     {
+        static char BOM = (char)11;
+        static char EOS = (char)13;
+        static char EOM = (char)28;
         /*
         * Method        : SendExecuteServiceMessage
         * Returns       : string of request message
@@ -31,16 +34,16 @@ namespace MessageLibrary
 
             IFormatter formatter = new BinaryFormatter();
             Data data = (Data)formatter.Deserialize(serializedClass);
-            message = "DRC|PUB-SERVICE|<" + data.teamName + ">|<" + data.teamID + ">|" + "\n" +
-                    "SRV|<" + data.serviceTag + ">|<" + data.serviceName + ">|<" + data.securityLevel + ">|<" + data.numArg + ">|<" + data.numResp + ">|<" + data.description + ">|" + "\n" +
-                    "ARG|<" + data.argPosition[0] + ">|<" + data.argName[0] + ">|<" + data.argDataType[0] + ">|[mandatory|optional]||" + "\n" +
-                    "ARG|<" + data.argPosition[1] + ">|<" + data.argName[1] + ">|<" + data.argDataType[1] + ">|[mandatory|optional]||" + "\n" +
-                    "RSP|<" + data.responsePos[0] + ">|<" + data.responseName[0] + ">|<" + data.respDataType[0] + ">||" + "\n" +
-                    "RSP|<" + data.responsePos[1] + ">|<" + data.responseName[1] + ">|<" + data.respDataType[1] + ">||" + "\n" +
-                    "RSP|<" + data.responsePos[2] + ">|<" + data.responseName[2] + ">|<" + data.respDataType[2] + ">||" + "\n" +
-                    "RSP|<" + data.responsePos[3] + ">|<" + data.responseName[3] + ">|<" + data.respDataType[3] + ">||" + "\n" +
-                    "RSP|<" + data.responsePos[4] + ">|<" + data.responseName[4] + ">|<" + data.respDataType[4] + ">||" + "\n" +
-                    "MCH|<" + data.publishIP + ">|<" + data.publishPort + ">|";
+            message = BOM + "DRC|PUB-SERVICE|<" + data.teamName + ">|<" + data.teamID + ">|" + EOS +
+                    "SRV|<" + data.serviceTag + ">|<" + data.serviceName + ">|<" + data.securityLevel + ">|<" + data.numArg + ">|<" + data.numResp + ">|<" + data.description + ">|" + EOS +
+                    "ARG|<" + data.argPosition[0] + ">|<" + data.argName[0] + ">|<" + data.argDataType[0] + ">|[mandatory|optional]||" + EOS +
+                    "ARG|<" + data.argPosition[1] + ">|<" + data.argName[1] + ">|<" + data.argDataType[1] + ">|[mandatory|optional]||" + EOS +
+                    "RSP|<" + data.responsePos[0] + ">|<" + data.responseName[0] + ">|<" + data.respDataType[0] + ">||" + EOS +
+                    "RSP|<" + data.responsePos[1] + ">|<" + data.responseName[1] + ">|<" + data.respDataType[1] + ">||" + EOS +
+                    "RSP|<" + data.responsePos[2] + ">|<" + data.responseName[2] + ">|<" + data.respDataType[2] + ">||" + EOS +
+                    "RSP|<" + data.responsePos[3] + ">|<" + data.responseName[3] + ">|<" + data.respDataType[3] + ">||" + EOS +
+                    "RSP|<" + data.responsePos[4] + ">|<" + data.responseName[4] + ">|<" + data.respDataType[4] + ">||" + EOS +
+                    "MCH|<" + data.publishIP + ">|<" + data.publishPort + ">|" + EOS + EOM + EOS;
 
             return message;
         }

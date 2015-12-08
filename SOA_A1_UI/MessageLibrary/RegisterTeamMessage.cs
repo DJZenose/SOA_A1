@@ -20,6 +20,9 @@ namespace MessageLibrary
 {
     public class RegisterTeamMessage
     {
+        static char BOM = (char)11;
+        static char EOS = (char)13;
+        static char EOM = (char)28;
         /*
         * Method        : SendRegisterTeamMessage
         * Returns       : string of register result
@@ -30,7 +33,8 @@ namespace MessageLibrary
         {
             IFormatter formatter = new BinaryFormatter();
             Data data = (Data)formatter.Deserialize(serialClass);
-            string message = "DRC|REG-TEAM|||\n" + "INF|" + data.teamName + "|||";
+            string message = BOM + "DRC|REG-TEAM|||" + EOS + 
+                        "INF|" + data.teamName + "|" + data.publishPort + "|" + EOS + EOM + EOS;
             return message;
 
         }

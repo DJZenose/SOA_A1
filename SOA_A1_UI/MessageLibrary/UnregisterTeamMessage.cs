@@ -18,8 +18,12 @@ using DataClass;
 
 namespace MessageLibrary
 {
+    
     public class UnregisterTeamMessage
     {
+        static char BOM = (char)11;
+        static char EOS = (char)13;
+        static char EOM = (char)28;
         /*
         * Method        : SendUnregisterTeamMessage
         * Returns       : string of request
@@ -30,7 +34,7 @@ namespace MessageLibrary
         {
             IFormatter formatter1 = new BinaryFormatter();
             Data data = (Data)formatter1.Deserialize(serialClass);
-            return "DRC|UNREG-TEAM|<" + data.teamName + ">|<" + data.teamID + ">|";
+            return BOM + "DRC|UNREG-TEAM|<" + data.teamName + ">|<" + data.teamID + ">|" + EOS + EOM + EOS;
         }
 
         /*

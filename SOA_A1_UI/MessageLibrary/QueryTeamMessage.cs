@@ -19,6 +19,9 @@ namespace MessageLibrary
 {
     public class QueryTeamMessage
     {
+        static char BOM = (char)11;
+        static char EOS = (char)13;
+        static char EOM = (char)28;
 
         /*
         * Method        : SendQueryTeamMessage
@@ -32,8 +35,8 @@ namespace MessageLibrary
             Data data = (Data)formatter.Deserialize(serialClass);
 
             string message;
-            message = "DRC|QUERY-TEAM|<" + data.teamName + ">|<" + data.teamID + ">|\n" +
-                    "INF|<" + data.teamName + ">|<" + data.teamID + ">|<" + data.serviceTag + ">|";
+            message = BOM + "DRC|QUERY-TEAM|<" + data.teamName + ">|<" + data.teamID + ">|" + EOS +
+                    "INF|<" + data.teamName + ">|<" + data.teamID + ">|<" + data.serviceTag + ">|" + EOS + EOM + EOS;
 
             return message;
         }

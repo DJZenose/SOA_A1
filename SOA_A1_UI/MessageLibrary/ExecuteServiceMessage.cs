@@ -20,7 +20,10 @@ namespace MessageLibrary
 {
     public class ExecuteServiceMessage
     {
-
+       static char BOM = (char)11;
+       static char EOS = (char)13;
+       static char EOM = (char)28;
+       
         /*
         * Method        : SendExecuteServiceMessage
         * Returns       : string of request message
@@ -33,10 +36,10 @@ namespace MessageLibrary
             IFormatter formatter = new BinaryFormatter();
             Data data = (Data)formatter.Deserialize(SerialStream);
 
-            message = "DRC|EXEC-SERVICE|<" + data.teamName + ">|<" + data.teamID + ">|" + "\n" +
-            "SRV||<" + data.serviceName + ">||<" + data.numArg + ">|||" + "\n" + 
-            "ARG |<" + data.argPosition[8] + ">|<" + data.argName[0] + ">|<" + data.argDataType[0] + ">||<" + data.argValue1 + ">|" + "\n" +
-            "ARG |<" + data.argPosition[13] + ">|<" + data.argName[1] + ">|<" + data.argDataType[1] + ">||<" + data.argValue2 + ">|";
+            message = BOM + "DRC|EXEC-SERVICE|<" + data.teamName + ">|<" + data.teamID + ">|" + EOS +
+            "SRV||<" + data.serviceName + ">||<" + data.numArg + ">|||" + EOS + 
+            "ARG |<" + data.argPosition[8] + ">|<" + data.argName[0] + ">|<" + data.argDataType[0] + ">||<" + data.argValue1 + ">|" + EOS +
+            "ARG |<" + data.argPosition[13] + ">|<" + data.argName[1] + ">|<" + data.argDataType[1] + ">||<" + data.argValue2 + ">|" + EOS + EOM + EOS;
 
             return message;
         }
