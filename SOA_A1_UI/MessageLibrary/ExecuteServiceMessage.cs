@@ -34,8 +34,8 @@ namespace MessageLibrary
         {
             string message = BOM + "DRC|EXEC-SERVICE|" + data.teamName + "|" + data.teamID + "|" + EOS +
             "SRV||" + data.serviceName + "||" + data.numArg + "|||" + EOS + 
-            "ARG |" + data.argPosition[8] + "|" + data.argName[0] + "|" + data.argDataType[0] + "||" + data.argValue1 + "|" + EOS +
-            "ARG |" + data.argPosition[13] + "|" + data.argName[1] + "|" + data.argDataType[1] + "||" + data.argValue2 + "|" + EOS + EOM + EOS;
+            "ARG |" + data.argPosition[0] + "|" + data.argName[0] + "|" + data.argDataType[0] + "||" + data.argValue1 + "|" + EOS +
+            "ARG |" + data.argPosition[1] + "|" + data.argName[1] + "|" + data.argDataType[1] + "||" + data.argValue2 + "|" + EOS + EOM + EOS;
 
             return message;
         }
