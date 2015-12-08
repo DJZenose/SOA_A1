@@ -5,6 +5,7 @@ using System.Text;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using MessageLibrary;
 
 namespace Service
 {
@@ -25,6 +26,7 @@ namespace Service
     {
         // Thread signal.
         public static ManualResetEvent allDone = new ManualResetEvent(false);
+        public static string registerIP;
 
         public AsynchronousSocketListener()
         {
@@ -91,13 +93,12 @@ namespace Service
             state.workSocket = handler;
             handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
                 new AsyncCallback(ReadCallback), state);
-
         }
 
         public static void ReadCallback(IAsyncResult ar)
         {
             String content = String.Empty;
-            char[] finalDelCA = new char[] { (char)28, (char)13, (char)10 };
+            char[] finalDelCA = new char[] { (char)13, (char)28, (char)13 };
             string finalDel = new string(finalDelCA);
 
             // Retrieve the state object and the handler socket
@@ -121,7 +122,7 @@ namespace Service
                 {
                     Console.WriteLine("Read {0} bytes from socket. \n Data : {1}",
                         content.Length, content);
-                    parseContent(handler, content);
+                    messageRegister(handler, content);
                 }
                 else
                 {
@@ -134,9 +135,15 @@ namespace Service
             }
         }
 
-        private static void parseContent(Socket handler, String data)
+        private static void messageRegister(Socket handler, String data)
         {
+            Int32 port = 3128;
+            TcpClient client = new TcpClient(registerIP, port);
 
+            ExecuteServiceMessage.SendExecuteServiceMessage
+
+            // Translate the passed message into ASCII and store it as a Byte array.
+            Byte[] datatoSend = System.Text.Encoding.ASCII.GetBytes(message);
         }
 
         private static void SendToClient(Socket handler, String data)
@@ -173,6 +180,8 @@ namespace Service
 
         public static int Main(String[] args)
         {
+            Console.WriteLine("Please input register IP: ");
+            registerIP = Console.ReadLine();
             StartListening();
             return 0;
         }

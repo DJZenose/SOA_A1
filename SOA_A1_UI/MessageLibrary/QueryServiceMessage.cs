@@ -25,7 +25,7 @@ namespace MessageLibrary
         * Parameters    : Stream of the class containing the needed data
         * Description   : Builds string to send to the registry
         */
-        public string SendQueryServiceMessage(Stream serialClass)
+        public static string SendQueryServiceMessage(Stream serialClass)
         {
             string message;
             IFormatter formatter = new BinaryFormatter();
@@ -42,7 +42,7 @@ namespace MessageLibrary
         * Parameters    : Stream of the class containing the needed data
         * Description   : Builds string to send to the registry
         */
-        public Stream ParseQueryServiceMessage(string message, Stream serialClass)
+        public static Stream ParseQueryServiceMessage(string message, Stream serialClass)
         {
             IFormatter formatter1 = new BinaryFormatter();
             Data data = (Data)formatter1.Deserialize(serialClass);

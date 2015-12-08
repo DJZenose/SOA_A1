@@ -26,7 +26,7 @@ namespace MessageLibrary
         * Parameters    : Stream of the class containing the needed data
         * Description   : Builds string to send to the registry
         */
-        public string SendUnregisterTeamMessage(Stream serialClass)
+        public static string SendUnregisterTeamMessage(Stream serialClass)
         {
             IFormatter formatter1 = new BinaryFormatter();
             Data data = (Data)formatter1.Deserialize(serialClass);
@@ -39,7 +39,7 @@ namespace MessageLibrary
         * Parameters    : The response message and the serialized class
         * Description   : Parses response
         */
-        public Stream ParseUnregisterTeamMessage (string message, Stream serialClass)
+        public static Stream ParseUnregisterTeamMessage (string message, Stream serialClass)
         {
             IFormatter formatter1 = new BinaryFormatter();
             Data data = (Data)formatter1.Deserialize(serialClass);

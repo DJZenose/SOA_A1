@@ -25,7 +25,7 @@ namespace MessageLibrary
         * Parameters    : Stream of the class containing the needed data
         * Description   : Published a Service from the client !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         */
-        public string SendPublishServiceMessage(Stream serializedClass)
+        public static string SendPublishServiceMessage(Stream serializedClass)
         {
             string message;
 
@@ -51,7 +51,7 @@ namespace MessageLibrary
         * Parameters    : String of the response
         * Description   : Builds string to send to the registry
         */
-        public string ParsePublishServiceMessage(string response)
+        public static string ParsePublishServiceMessage(string response)
         {
             return response;
         }
