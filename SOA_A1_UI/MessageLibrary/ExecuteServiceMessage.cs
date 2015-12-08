@@ -23,7 +23,7 @@ namespace MessageLibrary
        static char BOM = (char)11;
        static char EOS = (char)13;
        static char EOM = (char)28;
-       
+
         /*
         * Method        : SendExecuteServiceMessage
         * Returns       : string of request message

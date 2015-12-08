@@ -147,13 +147,10 @@ namespace SOA_A1_UI
         {
             string message;
 
-            //create and call the class to make a query service message
-            MessageLibrary.ExecuteServiceMessage MessageCreate = new MessageLibrary.ExecuteServiceMessage();
-
             //serialize the current data object
             Stream stream = serialize();
             //grab the message created
-            message = MessageCreate.SendExecuteServiceMessage(stream);
+            message = MessageLibrary.ExecuteServiceMessage.SendExecuteServiceMessage(stream);
         }
         private void QueryTeamService()
         {
@@ -318,7 +315,7 @@ namespace SOA_A1_UI
             {
                 //create a new client socket ...
                 m_socWorker = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
-                String szIPSelected = "192.156.111.70";
+                String szIPSelected = "142.156.111.70";
                 String szPort = "5555";
                 int alPort = System.Convert.ToInt16(szPort, 10);
 
