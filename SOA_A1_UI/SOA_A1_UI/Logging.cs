@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*************
+*Programmers    : Connor McQuade & Brandon Erb & Dallas Thibodeau
+*Professor      : Ed Barsalou
+*Date           : 6/12/2015
+*FILE           : Logging.cs
+*Description    : code for logging information. can be called upon with a reference
+**************/
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,8 +18,15 @@ namespace SOA_A1_UI
 {
     public class Logging
     {
-
-        //LOGS AN ERROR TO THE LOG FILE
+        /*
+        * Method        : logger
+        * Returns       : none
+        * Parameters    : none
+        * Description   : takes in a message (not nessesarily an error) and formats it for
+                        : the log file. it also makes sure the logging location is available
+                        : and if it is not, creates it and grabs permission by using the Grant Access
+                        : method.
+        */
         public void logger(string errorMessage)
         {
             //Grab the path of the App_data folder to store the log in

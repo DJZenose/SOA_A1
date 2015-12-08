@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*************
+*Programmers    : Connor McQuade & Brandon Erb & Dallas Thibodeau
+*Professor      : Ed Barsalou
+*Date           : 6/12/2015
+*FILE           : UIForm
+*Description    : code for the associated form (UIForm)
+**************/
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -39,11 +47,21 @@ namespace SOA_A1_UI
             dataLocal.publishPort = Convert.ToInt32(servicePort);
             PublishService();
         }
-
+        //useless, but im too scared to remove it
+        //windows forms are unpredictable when it
+        //comes to a fair ammount of stuff.
         private void LoginBtn_Click(object sender, EventArgs e)
         {
         }
 
+        /*
+        * Method        : GrabTotalBtn_Click
+        * Returns       : none
+        * Parameters    : none
+        * Description   : grabs the total of the selected items the user wishes to purchase
+                        : it also grabs the region, and passes all of that information to the
+                        : PurchaseTotaller to send to the service.
+        */
         private void GrabTotalBtn_Click(object sender, EventArgs e)
         {
             double totalItemPrice = 0;
@@ -69,7 +87,13 @@ namespace SOA_A1_UI
 
             Call_PurchaseTotaller(totalItemPrice, regionCode);
         }
-
+        /*
+        * Method        : Call_PurchaseTotaller
+        * Returns       : none
+        * Parameters    : totalItemPrice -> total price added up from the selected items
+                        : regionCode     -> region code aquired from the selection box
+        * Description   : when invoked this will take the data given, and send it to the appropriate service.
+        */
         private void Call_PurchaseTotaller(double totalItemPrice, string regionCode)
         {
 
@@ -98,14 +122,29 @@ namespace SOA_A1_UI
                 logError(ex.Message);
             }*/
         }
+
+        /*
+        * Method        : regionCheck_SelectedIndexChanged
+        * Returns       : none
+        * Parameters    : none
+        * Description   : this prevents the user from selecting multiple regions in the client, as they are checkboxes
+        */
         private void regionCheck_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //this happens just before an item is checked... so i clear all the checks
+            //and it will check the one selected right after
             foreach (int i in regionCheck.CheckedIndices)
             {
                 regionCheck.SetItemCheckState(i, CheckState.Unchecked);
             }
         }
 
+        /*
+        * Method        : serialize
+        * Returns       : the stream that was serialized
+        * Parameters    : none
+        * Description   : serialzes the stream with the current state of dataLocal (the clients data knowledge)
+        */
         private Stream serialize()
         {
             IFormatter formatter = new BinaryFormatter();
@@ -113,19 +152,7 @@ namespace SOA_A1_UI
             formatter.Serialize(stream, dataLocal);
             return stream;
         }
-        // State object for receiving data from remote device.
-        public class StateObject
-        {
-            // Client socket.
-            public Socket workSocket = null;
-            // Size of receive buffer.
-            public const int BufferSize = 256;
-            // Receive buffer.
-            public byte[] buffer = new byte[BufferSize];
-            // Received data string.
-            public StringBuilder sb = new StringBuilder();
-        }
-
+       
         // The response from the remote device.
         private static String response = String.Empty;
         private static Stream responseStream;
@@ -172,16 +199,33 @@ namespace SOA_A1_UI
             }
         }
 
+        /*
+        * Method        : Registerbtn_Click
+        * Returns       : none
+        * Parameters    : none
+        * Description   : when the user clicks this the system attempts to register them to the registry.
+        */
         private void Registerbtn_Click(object sender, EventArgs e)
         {
             RegisterTeam();
         }
 
+        /*
+        * Method        : unRegisterbtn_Click
+        * Returns       : none
+        * Parameters    : none
+        * Description   : when the user clicks this the system will attempt to un-register them from the registry
+        */
         private void unRegisterbtn_Click(object sender, EventArgs e)
         {
             UnregisterTeam();
         }
-
+        /*
+        * Method        : cmdConnect
+        * Returns       : none
+        * Parameters    : none
+        * Description   : connects the client to the specified address.
+        */
         private void cmdConnect()
         {
             try
@@ -197,6 +241,12 @@ namespace SOA_A1_UI
             }
         }
 
+        /*
+        * Method        : cmdSendData
+        * Returns       : none
+        * Parameters    : none
+        * Description   : sends data to the previously connected address
+        */
         private void cmdSendData()
         {
             try
@@ -211,7 +261,12 @@ namespace SOA_A1_UI
                 MessageBox.Show(se.Message);
             }
         }
-
+        /*
+        * Method        : cmdReceiveData
+        * Returns       : none
+        * Parameters    : none
+        * Description   : recieves data from the previously connected address
+        */
         private void cmdReceiveData()
         {
             try
@@ -231,7 +286,12 @@ namespace SOA_A1_UI
                 MessageBox.Show(se.Message);
             }
         }
-
+        /*
+        * Method        : cmdClose
+        * Returns       : none
+        * Parameters    : none
+        * Description   : closes the connection to the address
+        */
         private void cmdClose()
         {
             log.logger("Closed Socket");
