@@ -91,7 +91,7 @@ namespace Service
                     string message = MessageLibrary.QueryTeamMessage.SendQueryTeamMessage(service);
                     
                     string response = MessageLibrary.registryConnector.connectReg(message, "10.113.21.20", 3000);
-                    string ret;
+                    string ret = "";
                     if ( response == "OK")
                     {
                        double[] results = new double[5];
