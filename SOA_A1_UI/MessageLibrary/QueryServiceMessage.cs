@@ -19,6 +19,9 @@ namespace MessageLibrary
 {
     public class QueryServiceMessage
     {
+        static char BOM = (char)11;
+        static char EOS = (char)13;
+        static char EOM = (char)28;
         /*
         * Method        : SendQueryServiceMessagee
         * Returns       : string of registery query
@@ -31,8 +34,8 @@ namespace MessageLibrary
             IFormatter formatter = new BinaryFormatter();
             Data data = (Data)formatter.Deserialize(serialClass);
 
-            message = "DRC|QUERY-SERVICE|<" + data.teamName + ">|<" + data.teamID + ">|\n" +
-                   "SRV|<" + data.serviceTag + ">|" + data.publishPort + "|";
+            message = BOM + "DRC|QUERY-SERVICE|<" + data.teamName + ">|<" + data.teamID + ">|"+ EOS +
+                   "SRV|<" + data.serviceTag + ">|" + data.publishPort + "|" + EOS + EOM + EOS;
             return message;
         }
 

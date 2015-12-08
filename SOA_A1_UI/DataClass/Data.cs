@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataClass
 {
+    [Serializable]
     public class Data
     {
         public double total;
