@@ -13,6 +13,9 @@ using System.Security.Principal;
 using System.Net.Sockets;
 using System.Net;
 using System.Threading;
+using DataClass;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace SOA_A1_UI
 {
@@ -21,9 +24,13 @@ namespace SOA_A1_UI
         private string serviceIP = "192.168.1.1";
         private Socket m_socWorker;
         private const int minimum = 0, firstIndex = 0;
+        private Data dataLocal = new Data();
         public UIForm()
         {
             InitializeComponent();
+            dataLocal.teamName = "Team Condabran";
+            dataLocal.serviceTag = "totalPurchase";
+            PublishService();
         }
 
         private void LoginBtn_Click(object sender, EventArgs e)
@@ -87,7 +94,7 @@ namespace SOA_A1_UI
                 regionCheck.SetItemCheckState(i, CheckState.Unchecked);
             }
         }
-
+        //LOGS AN ERROR TO THE LOG FILE
         private void logError(string errorMessage)
         {
             //Grab the path of the App_data folder to store the log in
@@ -107,6 +114,13 @@ namespace SOA_A1_UI
 
         }
 
+        /*
+        * Method        : GrantAccess
+        * Returns       : a success or fail
+        * Parameters    : a path to the folder to grant access too
+        * Description   : aquire access to the folder given in the file path
+        */
+
         private bool GrantAccess(string fullPath)
         {
             //grab the directory information
@@ -122,6 +136,105 @@ namespace SOA_A1_UI
             return true;
         }
 
+        private void ExecuteService()
+        {
+            string message;
+
+            //create and call the class to make a query service message
+            MessageLibrary.ExecuteServiceMessage MessageCreate = new MessageLibrary.ExecuteServiceMessage();
+
+            //serialize the current data object
+            Stream stream = serialize();
+            //grab the message created
+            message = MessageCreate.SendExecuteServiceMessage(stream);
+        }
+        private void QueryTeamService()
+        {
+            string message;
+
+            //create and call the class to make a query service message
+            MessageLibrary.QueryTeamMessage MessageCreate = new MessageLibrary.QueryTeamMessage();
+
+            //serialize the current data object
+            Stream stream = serialize();
+            //grab the message created
+            message = MessageCreate.SendQueryTeamMessage(stream);
+
+            StartClient(message, "QT");
+        }
+        //Query Service
+        private void QueryService()
+        {
+            string message;
+
+            //create and call the class to make a query service message
+            MessageLibrary.QueryServiceMessage MessageCreate = new MessageLibrary.QueryServiceMessage();
+
+            //serialize the current data object
+            Stream stream = serialize();
+            //grab the message created
+            message = MessageCreate.SendQueryServiceMessage(stream);
+            
+            //send the message to the client and signal the type of message
+            StartClient(message, "QS");
+            stream.Close();
+        }
+
+        //Register Team
+        private void RegisterTeam()
+        {
+            string message;
+            MessageLibrary.RegisterTeamMessage MessageCreate = new MessageLibrary.RegisterTeamMessage();
+
+            //serialize the current data object
+            Stream stream = serialize();
+            //grab the message created
+            message = MessageCreate.SendRegisterTeamMessage(stream);
+
+            //send the message
+            StartClient(message, "RT");
+            stream.Close();
+        }
+        //Unregister Team
+        private void UnregisterTeam()
+        {
+            string message;
+
+            MessageLibrary.UnregisterTeamMessage MessageCreate = new MessageLibrary.UnregisterTeamMessage();
+
+            //serialize the current data object
+            Stream stream = serialize();
+            //grab the message created
+            message = MessageCreate.SendUnregisterTeamMessage(stream);
+
+            //send a message with the team name and our current id to unregister us
+            StartClient(message, "UR");
+            stream.Close();
+        }
+
+        private void PublishService()
+        {
+            string message;
+            //create the message handler for the publish service
+            MessageLibrary.PublishServiceMessage MessageCreate = new MessageLibrary.PublishServiceMessage();
+
+            //serialize the current data object
+            Stream stream = serialize();
+            //grab the message created
+            message = MessageCreate.SendPublishServiceMessage(stream);
+
+            //initiate and perform the publishService
+            StartClient(message, "PS");
+            stream.Close();
+        }
+
+        private Stream serialize()
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new System.IO.MemoryStream();
+            formatter.Serialize(stream, dataLocal);
+            return stream;
+        }
         // State object for receiving data from remote device.
         public class StateObject
         {
@@ -134,7 +247,6 @@ namespace SOA_A1_UI
             // Received data string.
             public StringBuilder sb = new StringBuilder();
         }
-            
     // The port number for the remote device.
         private const int port = 11000;
 
@@ -148,8 +260,9 @@ namespace SOA_A1_UI
 
         // The response from the remote device.
         private static String response = String.Empty;
+        private static Stream responseStream;
 
-        private static void StartClient()
+        private void StartClient(string messageToSend, string command)
         {
             // Connect to a remote device.
             try
@@ -157,7 +270,7 @@ namespace SOA_A1_UI
                 // Establish the remote endpoint for the socket.
                 // The name of the 
                 // remote device is "host.contoso.com".
-                IPHostEntry ipHostInfo = Dns.Resolve("192.168.151.1");
+                IPHostEntry ipHostInfo = Dns.Resolve("192.156.111.70");
                 IPAddress ipAddress = ipHostInfo.AddressList[0];
                 IPEndPoint remoteEP = new IPEndPoint(ipAddress, port);
 
@@ -171,7 +284,7 @@ namespace SOA_A1_UI
                 connectDone.WaitOne();
 
                 // Send test data to the remote device.
-                Send(client, "This is a test<EOF>");
+                Send(client, messageToSend);
                 sendDone.WaitOne();
 
                 // Receive the response from the remote device.
@@ -180,10 +293,43 @@ namespace SOA_A1_UI
 
                 // Write the response to the console.
                 Console.WriteLine("Response received : {0}", response);
-
-                // Release the socket.
+                
+                IFormatter formatter = new BinaryFormatter();
+                responseStream = new System.IO.MemoryStream();
+                Data obj = (Data)formatter.Deserialize(responseStream);
+                if (obj.message == "OK")
+                {
+                    switch (command)
+                    {
+                        case "QS":// case in which QueryService is called
+                            //return the 
+                            break;
+                        case "QT":// case in which the QueryTeamService is called
+                            break;
+                        case "RT": // case in which RegisterTeam is called
+                            //set the new teamID and inform the user about the ID being valid
+                            dataLocal.teamID = obj.teamID;
+                            IDValidLabel.Text = obj.message;
+                            break;
+                        case "UR": //case in which UnRegisterTeam is called
+                            //no return nessesary
+                            break;
+                        case "PS":// case in which the PublishService is called
+                            //no return nessesary
+                            break;
+                        case "ES"://case in which the ExecuteService is called
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                
                 client.Shutdown(SocketShutdown.Both);
                 client.Close();
+                //close the stream for the response from the server so we do not consume too many resources
+                responseStream.Close();
+                // Release the socket.
+                
 
             }
             catch (Exception e)
@@ -278,6 +424,16 @@ namespace SOA_A1_UI
             // Begin sending the data to the remote device.
             client.BeginSend(byteData, 0, byteData.Length, 0,
                 new AsyncCallback(SendCallback), client);
+        }
+
+        private void Registerbtn_Click(object sender, EventArgs e)
+        {
+            RegisterTeam();
+        }
+
+        private void unRegisterbtn_Click(object sender, EventArgs e)
+        {
+            UnregisterTeam();
         }
 
         private static void SendCallback(IAsyncResult ar)
