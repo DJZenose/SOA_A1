@@ -27,7 +27,8 @@ namespace SOA_A1_UI
         private string servicePort = ConfigurationManager.AppSettings.Get("ConfigPort");
         private Socket m_socWorker;
         private const int minimum = 0, firstIndex = 0;
-        private Data dataLocal = new Data();
+        public Data dataLocal = new Data();
+        
         public UIForm()
         {
             InitializeComponent();

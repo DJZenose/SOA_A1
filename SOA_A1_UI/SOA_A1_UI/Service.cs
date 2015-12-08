@@ -73,12 +73,18 @@ namespace SOA_A1_UI
         }
 
         //Register Team
-        private string RegisterTeam(Data data)
+        private string RegisterTeam(Data data, string regIP, Int32 regPort)
         {
             string message;
-            message = MessageLibrary.RegisterTeamMessage.SendRegisterTeamMessage()
+            string response;
 
-            
+            IFormatter formatter2 = new BinaryFormatter();
+            Stream stream = new MemoryStream();
+            formatter2.Serialize(stream, data);
+
+            message = MessageLibrary.RegisterTeamMessage.SendRegisterTeamMessage(stream);
+            response = MessageLibrary.registryConnector.connectReg(message, regIP, regPort);
+
         }
 
         //Unregister Team
