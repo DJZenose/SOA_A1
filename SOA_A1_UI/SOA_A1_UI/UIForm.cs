@@ -28,14 +28,15 @@ namespace SOA_A1_UI
         private Socket m_socWorker;
         private const int minimum = 0, firstIndex = 0;
         public Data dataLocal = new Data();
-        
+        Logging log = new Logging();
         public UIForm()
         {
             InitializeComponent();
 
             dataLocal.teamName = ConfigurationManager.AppSettings.Get("TeamName");
             dataLocal.serviceTag = "GIORP-TOTAL";
-
+            dataLocal.publishIP = serviceIP;
+            dataLocal.publishPort = Convert.ToInt32(servicePort);
             PublishService();
         }
 
@@ -242,6 +243,7 @@ namespace SOA_A1_UI
             }
             catch (System.Net.Sockets.SocketException se)
             {
+                log.logger(se.Message);
                 MessageBox.Show(se.Message);
             }
         }
@@ -256,6 +258,7 @@ namespace SOA_A1_UI
             }
             catch (System.Net.Sockets.SocketException se)
             {
+                log.logger(se.Message);
                 MessageBox.Show(se.Message);
             }
         }
@@ -275,6 +278,7 @@ namespace SOA_A1_UI
             }
             catch (System.Net.Sockets.SocketException se)
             {
+                log.logger(se.Message);
                 MessageBox.Show(se.Message);
             }
         }

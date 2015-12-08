@@ -53,12 +53,11 @@ namespace MessageLibrary
         public static Stream ParseExecuteServiceMessage(string dataToParse)
         {
             Data dataParsed = new Data();
-            string[] dataUnassigned = dataToParse.Split(delimiters);
 
             char[] delimiterChars = { '|' };
             string[] words = dataToParse.Split(delimiterChars);
 
-            dataParsed.numSegments = words[4];
+            dataParsed.numSegments = Convert.ToInt32(words[4]);
 
             
 
