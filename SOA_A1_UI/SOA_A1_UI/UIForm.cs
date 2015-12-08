@@ -147,13 +147,10 @@ namespace SOA_A1_UI
         {
             string message;
 
-            //create and call the class to make a query service message
-            MessageLibrary.ExecuteServiceMessage MessageCreate = new MessageLibrary.ExecuteServiceMessage();
-
             //serialize the current data object
             Stream stream = serialize();
             //grab the message created
-            message = MessageCreate.SendExecuteServiceMessage(stream);
+            message = MessageLibrary.ExecuteServiceMessage.SendExecuteServiceMessage(stream);
         }
         private void QueryTeamService()
         {
