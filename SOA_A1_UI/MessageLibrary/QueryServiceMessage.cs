@@ -51,6 +51,7 @@ namespace MessageLibrary
 
             if (words[1] == "OK")
             {
+                data.message = words[1];
                 data.numSegments = Convert.ToInt32(words[4]);
                 data.teamName = words[6];
                 data.serviceName = words[7];

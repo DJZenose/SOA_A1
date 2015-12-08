@@ -59,7 +59,7 @@ namespace SOA_A1_UI
             publishData.respDataType[3] = "double";
             publishData.respDataType[4] = "double";
             publishData.publishIP = publishIP;
-            publishData.publishPort = publishPort;
+            publishData.publishPort = 11000;
             publishData.securityLevel = 1;
 
             message = MessageLibrary.PublishServiceMessage.SendPublishServiceMessage(publishData);
@@ -129,10 +129,11 @@ namespace SOA_A1_UI
             message = MessageLibrary.QueryServiceMessage.SendQueryServiceMessage(data);
             response = MessageLibrary.registryConnector.connectReg(message, regIP, regPort);
 
-            Data retData = MessageLibrary.UnregisterTeamMessage.ParseUnregisterTeamMessage(response);
+            Data retData = MessageLibrary.QueryServiceMessage.ParseQueryServiceMessage(response);
 
             if (retData.message == "OK")
             {
+                ExecuteService(retData, retData.publishIP, retData.publishPort);
                 log.logger(retData.message);
                 return retData;
             }
@@ -153,7 +154,7 @@ namespace SOA_A1_UI
             string response;
 
             message = MessageLibrary.ExecuteServiceMessage.SendExecuteServiceMessage(data);
-            response = MessageLibrary.registryConnector.connectReg(message, regIP, regPort);
+            response = MessageLibrary.registryConnector.connectReg(message, data.publishIP, data.publishPort);
 
             Data retData = MessageLibrary.ExecuteServiceMessage.ParseExecuteServiceMessage(response);
             
