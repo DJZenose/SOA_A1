@@ -16,12 +16,15 @@ using System.Threading;
 using DataClass;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Configuration;
+using System.Collections.Specialized;
 
 namespace SOA_A1_UI
 {
     public partial class UIForm : Form
     {
-        private string serviceIP = "192.168.1.1";
+        private string serviceIP = ConfigurationManager.AppSettings.Get("ConfigIP");
+        private string servicePort = ConfigurationManager.AppSettings.Get("ConfigPort");
         private Socket m_socWorker;
         private const int minimum = 0, firstIndex = 0;
         private Data dataLocal = new Data();
