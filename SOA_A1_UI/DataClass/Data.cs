@@ -35,7 +35,33 @@ namespace DataClass
         public int numSegments;
         public Data()
         {
-
+            serviceTag = "GIORP-TOTAL";
+            serviceName = "GiorpService";
+            numArg = 2;
+            numResp = 5;
+            description = "Purchase Totaler";
+            argPosition[0] = 1;
+            argPosition[1] = 2;
+            argName[0] = "region"; //see stupid registry
+            argName[1] = "totals";
+            argDataType[0] = "string";
+            argDataType[1] = "double";
+            responsePos[0] = 1;
+            responsePos[1] = 2;
+            responsePos[2] = 3;
+            responsePos[3] = 4;
+            responsePos[4] = 5;
+            responseName[0] = "SUB";
+            responseName[1] = "PST";
+            responseName[2] = "HST";
+            responseName[3] = "GST";
+            responseName[4] = "TPA";
+            respDataType[0] = "double";
+            respDataType[1] = "double";
+            respDataType[2] = "double";
+            respDataType[3] = "double";
+            respDataType[4] = "double";
+            securityLevel = 1;
         }
        
     }
