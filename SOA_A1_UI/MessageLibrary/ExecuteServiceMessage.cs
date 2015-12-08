@@ -86,5 +86,20 @@ namespace MessageLibrary
             formatter.Serialize(stream, dataParsed);
             return stream;
         }
+
+        public static string createReturnMessage(double[] returnVals)
+        {
+            string message;
+            string[] dataMembers = new string[] { "SUB", "PST", "HST", "GST", "TPA" };
+
+            message = BOM + "PUB|OK|||" + returnVals.Length + "|" + EOS;
+            for (int i = 0; i < returnVals.Length; i ++)
+            {
+                message += "RSP|" + (i + 1) + "|" + dataMembers[i] + "|double|"
+                        + returnVals[i] + EOS;
+            }
+            message += EOM + EOS;
+            return message;
+        }
     }
 }
