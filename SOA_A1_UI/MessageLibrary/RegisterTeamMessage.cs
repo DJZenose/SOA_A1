@@ -32,6 +32,7 @@ namespace MessageLibrary
         public static string SendRegisterTeamMessage(Stream serialClass)
         {
             IFormatter formatter = new BinaryFormatter();
+            serialClass.Position = 0;
             Data data = (Data)formatter.Deserialize(serialClass);
             string message = BOM + "DRC|REG-TEAM|||" + EOS + 
                         "INF|" + data.teamName + "|" + data.publishPort + "|" + EOS + EOM + EOS;
