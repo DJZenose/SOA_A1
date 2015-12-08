@@ -105,47 +105,6 @@ namespace SOA_A1_UI
                 regionCheck.SetItemCheckState(i, CheckState.Unchecked);
             }
         }
-        //LOGS AN ERROR TO THE LOG FILE
-        private void logError(string errorMessage)
-        {
-            //Grab the path of the App_data folder to store the log in
-            var path = System.IO.Path.GetFullPath("../../App_Data/");
-            //if the folder we need doesnt exist create it
-            if (!System.IO.Directory.Exists(path))
-            {
-                System.IO.Directory.CreateDirectory(path);
-            }
-
-            //get access to the folder that was created and make sure it was successfull
-            if (GrantAccess(path) == true)
-            {
-                //if the access to the folder was successfull, write the error to the log file
-                System.IO.File.AppendAllText(path + "logFile.txt", DateTime.Now + ", SOA Client, C.McQuade-B.Erb-D.Thibodeau: " + errorMessage + Environment.NewLine);
-            }
-
-        }
-
-        /*
-        * Method        : GrantAccess
-        * Returns       : a success or fail
-        * Parameters    : a path to the folder to grant access too
-        * Description   : aquire access to the folder given in the file path
-        */
-
-        private bool GrantAccess(string fullPath)
-        {
-            //grab the directory information
-            DirectoryInfo dInfo = new DirectoryInfo(fullPath);
-            //access the directories security for modification
-            DirectorySecurity dSecurity = dInfo.GetAccessControl();
-            //add new permissions for the application to properly log
-            dSecurity.AddAccessRule(new FileSystemAccessRule(new SecurityIdentifier(WellKnownSidType.WorldSid, null),
-                                                            FileSystemRights.FullControl, InheritanceFlags.ObjectInherit | InheritanceFlags.ContainerInherit,
-                                                            PropagationFlags.NoPropagateInherit, AccessControlType.Allow));
-            //apply those permissions to the directory
-            dInfo.SetAccessControl(dSecurity);
-            return true;
-        }
 
         private Stream serialize()
         {
@@ -166,16 +125,6 @@ namespace SOA_A1_UI
             // Received data string.
             public StringBuilder sb = new StringBuilder();
         }
-    // The port number for the remote device.
-        private const int port = 11000;
-
-        // ManualResetEvent instances signal completion.
-        private static ManualResetEvent connectDone =
-            new ManualResetEvent(false);
-        private static ManualResetEvent sendDone =
-            new ManualResetEvent(false);
-        private static ManualResetEvent receiveDone =
-            new ManualResetEvent(false);
 
         // The response from the remote device.
         private static String response = String.Empty;
@@ -285,6 +234,7 @@ namespace SOA_A1_UI
 
         private void cmdClose()
         {
+            log.logger("Closed Socket");
             m_socWorker.Close();
         }
     }

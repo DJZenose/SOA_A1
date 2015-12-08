@@ -23,6 +23,7 @@ namespace SOA_A1_UI
 {
     class Service
     {
+        Logging log = new Logging();
         public string PublishService( string publishIP, Int32 publishPort, string regIP, Int32 regPort, string teamName, string teamID)
         {
             string message;
@@ -69,6 +70,7 @@ namespace SOA_A1_UI
 
             response = MessageLibrary.registryConnector.connectReg(message, regIP, regPort);
 
+            log.logger(response);
             return response;
         }
 
@@ -92,10 +94,12 @@ namespace SOA_A1_UI
 
             if (retData.message == "OK")
             {
+                log.logger(retData.message);
                 return retData;
             }
             else
             {
+                log.logger(retData.message);
                 //error log
             }
 
@@ -123,10 +127,12 @@ namespace SOA_A1_UI
 
             if (retData.message == "OK")
             {
+                log.logger(retData.message);
                 return retData;
             }
             else
             {
+                log.logger(retData.message);
                 //error log
             }
 
@@ -154,10 +160,12 @@ namespace SOA_A1_UI
 
             if (retData.message == "OK")
             {
+                log.logger(retData.message);
                 return retData;
             }
             else
             {
+                log.logger(retData.message);
                 //error log
             }
 
@@ -185,10 +193,12 @@ namespace SOA_A1_UI
 
             if (retData.message == "OK")
             {
+                log.logger(retData.message);
                 return retData;
             }
             else
             {
+                log.logger(retData.message);
                 //error log
             }
 
