@@ -46,6 +46,7 @@
     <Compile Include="QueryTeamMessage.cs" />
     <Compile Include="RegisterTeamMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="registryConnector.cs" />
     <Compile Include="UnregisterTeamMessage.cs" />
   </ItemGroup>
   <ItemGroup>

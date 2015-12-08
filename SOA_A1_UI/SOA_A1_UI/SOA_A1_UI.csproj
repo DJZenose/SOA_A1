@@ -52,7 +52,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connection.cs" />
     <Compile Include="Service.cs" />
     <Compile Include="UIForm.cs">
       <SubType>Form</SubType>
