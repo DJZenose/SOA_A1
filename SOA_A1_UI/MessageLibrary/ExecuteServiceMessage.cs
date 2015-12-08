@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*************
+*Programmers    : Connor McQuade & Brandon Erb & Dallas Thibodeau
+*Professor      : Ed Barsalou
+*Date           : 6/12/2015
+*FILE           : ExecuteServiceMessage
+*Description    : Class Library for ExecuteServiceMessage
+**************/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,17 +20,34 @@ namespace MessageLibrary
 {
     public class ExecuteServiceMessage
     {
+
+        /*
+        * Method        : SendExecuteServiceMessage
+        * Returns       : string of request message
+        * Parameters    : Stream of the class containing the needed data
+        * Description   : Builds string to send to the registry
+        */
         public string SendExecuteServiceMessage(Stream SerialStream)
         {
             string message;
             IFormatter formatter = new BinaryFormatter();
             Data data = (Data)formatter.Deserialize(SerialStream);
 
-            message = "DRC|EXEC-SERVICE|<" + data.teamName + ">|<" + teamID + ">|SRV||<" + serviceName + ">||<" + numArgs + ">|||ARG|<" + argPos + ">|<" + argName + ">|<" + argType + ">||<" + argValue + ">|";
+            message = "DRC|EXEC-SERVICE|<" + data.teamName + ">|<" + data.teamID + ">|" + "\n" +
+            "SRV||<" + data.serviceName + ">||<" + data.numArg + ">|||" + "\n" + 
+            "ARG |<" + data.argPosition[0] + ">|<" + data.argName[0] + ">|<" + data.argDataType[0] + ">||<" + data.argValue1 + ">|" + "\n" +
+            "ARG |<" + data.argPosition[1] + ">|<" + data.argName[1] + ">|<" + data.argDataType[1] + ">||<" + data.argValue2 + ">|";
+
             return message;
         }
 
-        public Data ParseExecuteServiceMessage(string dataToParse)
+        /*
+        * Method        : ParseExecuteServiceMessage
+        * Returns       : Stream of the data class
+        * Parameters    : string of the registry reply
+        * Description   : parses registry response
+        */
+        public Stream ParseExecuteServiceMessage(string dataToParse)
         {
             Data dataParsed = new Data();
             char[] delimiters = new char[] { '|' };
@@ -53,8 +78,11 @@ namespace MessageLibrary
                 dataParsed.argValue1 = Convert.ToInt32(dataUnassigned[16]);
             }
 
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new MemoryStream();
+            formatter.Serialize(stream, dataParsed);
+            return stream;
 
-            return dataParsed;
         }
     }
 }
