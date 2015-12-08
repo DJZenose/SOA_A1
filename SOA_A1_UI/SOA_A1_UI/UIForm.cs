@@ -156,13 +156,10 @@ namespace SOA_A1_UI
         {
             string message;
 
-            //create and call the class to make a query service message
-            MessageLibrary.QueryTeamMessage MessageCreate = new MessageLibrary.QueryTeamMessage();
-
             //serialize the current data object
             Stream stream = serialize();
             //grab the message created
-            message = MessageCreate.SendQueryTeamMessage(stream);
+            message = MessageLibrary.QueryTeamMessage.SendQueryTeamMessage(stream);
 
             StartClient(message, "QT");
         }
@@ -170,14 +167,12 @@ namespace SOA_A1_UI
         private void QueryService()
         {
             string message;
-
-            //create and call the class to make a query service message
-            MessageLibrary.QueryServiceMessage MessageCreate = new MessageLibrary.QueryServiceMessage();
+            
 
             //serialize the current data object
             Stream stream = serialize();
             //grab the message created
-            message = MessageCreate.SendQueryServiceMessage(stream);
+            message = MessageLibrary.QueryServiceMessage.SendQueryServiceMessage(stream);
             
             //send the message to the client and signal the type of message
             StartClient(message, "QS");
@@ -188,12 +183,11 @@ namespace SOA_A1_UI
         private void RegisterTeam()
         {
             string message;
-            MessageLibrary.RegisterTeamMessage MessageCreate = new MessageLibrary.RegisterTeamMessage();
 
             //serialize the current data object
             Stream stream = serialize();
             //grab the message created
-            message = MessageCreate.SendRegisterTeamMessage(stream);
+            message = MessageLibrary.RegisterTeamMessage.SendRegisterTeamMessage(stream);
 
             //send the message
             StartClient(message, "RT");
@@ -203,13 +197,12 @@ namespace SOA_A1_UI
         private void UnregisterTeam()
         {
             string message;
-
-            MessageLibrary.UnregisterTeamMessage MessageCreate = new MessageLibrary.UnregisterTeamMessage();
+            
 
             //serialize the current data object
             Stream stream = serialize();
             //grab the message created
-            message = MessageCreate.SendUnregisterTeamMessage(stream);
+            message = MessageLibrary.UnregisterTeamMessage.SendUnregisterTeamMessage(stream);
 
             //send a message with the team name and our current id to unregister us
             StartClient(message, "UR");
@@ -219,13 +212,11 @@ namespace SOA_A1_UI
         private void PublishService()
         {
             string message;
-            //create the message handler for the publish service
-            MessageLibrary.PublishServiceMessage MessageCreate = new MessageLibrary.PublishServiceMessage();
 
             //serialize the current data object
             Stream stream = serialize();
             //grab the message created
-            message = MessageCreate.SendPublishServiceMessage(stream);
+            message = MessageLibrary.PublishServiceMessage.SendPublishServiceMessage(stream);
 
             //initiate and perform the publishService
             StartClient(message, "PS");

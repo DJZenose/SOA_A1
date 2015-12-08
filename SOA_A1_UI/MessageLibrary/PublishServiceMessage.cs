@@ -33,6 +33,7 @@ namespace MessageLibrary
             string message;
 
             IFormatter formatter = new BinaryFormatter();
+            serializedClass.Position = 0;
             Data data = (Data)formatter.Deserialize(serializedClass);
             message = BOM + "DRC|PUB-SERVICE|<" + data.teamName + ">|<" + data.teamID + ">|" + EOS +
                     "SRV|<" + data.serviceTag + ">|<" + data.serviceName + ">|<" + data.securityLevel + ">|<" + data.numArg + ">|<" + data.numResp + ">|<" + data.description + ">|" + EOS +
