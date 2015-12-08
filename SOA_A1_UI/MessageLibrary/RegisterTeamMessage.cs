@@ -49,8 +49,6 @@ namespace MessageLibrary
             char[] delimiterChars = { '|', '|', '|' };
             string[] words = message.Split(delimiterChars);
 
-            data.message = words[1];
-
             if (words[1] == "OK")
             {
                 data.teamID = words[2];
@@ -58,7 +56,7 @@ namespace MessageLibrary
             }
             else
             {
-                data.message = words[1];
+                data.message = message;
             }
 
             IFormatter formatter2 = new BinaryFormatter();

@@ -21,23 +21,25 @@ namespace MessageLibrary
     public class UnregisterTeamMessage
     {
         /*
-        * Method        : SendRegisterTeamMessage
-        * Returns       : string of register result
+        * Method        : SendUnregisterTeamMessage
+        * Returns       : string of request
         * Parameters    : Stream of the class containing the needed data
         * Description   : Builds string to send to the registry
         */
-        public string SendUnregisterTeamMessage(string teamName, string teamID)
+        public string SendUnregisterTeamMessage(Stream serialClass)
         {
-            return "DRC|UNREG-TEAM|<" + teamName + ">|<" + teamID + ">|";
+            IFormatter formatter1 = new BinaryFormatter();
+            Data data = (Data)formatter1.Deserialize(serialClass);
+            return "DRC|UNREG-TEAM|<" + data.teamName + ">|<" + data.teamID + ">|";
         }
 
         /*
-        * Method        : SendRegisterTeamMessage
-        * Returns       : string of register result
-        * Parameters    : Stream of the class containing the needed data
-        * Description   : Builds string to send to the registry
+        * Method        : ParseUnregisterTeamMessage
+        * Returns       : Stream of the class containing the needed data
+        * Parameters    : The response message and the serialized class
+        * Description   : Parses response
         */
-        public Stream ParseUnregisterTeamMessage (string message)
+        public Stream ParseUnregisterTeamMessage (string message, Stream serialClass)
         {
             IFormatter formatter1 = new BinaryFormatter();
             Data data = (Data)formatter1.Deserialize(serialClass);
@@ -45,16 +47,13 @@ namespace MessageLibrary
             char[] delimiterChars = { '|', '|', '|' };
             string[] words = message.Split(delimiterChars);
 
-            data.message = words[1];
-
             if (words[1] == "OK")
             {
-                data.teamID = words[2];
                 data.message = words[1];
             }
             else
             {
-                data.message = words[1];
+                data.message = message;
             }
 
             IFormatter formatter2 = new BinaryFormatter();
