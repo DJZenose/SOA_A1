@@ -9,7 +9,7 @@ namespace MessageLibrary
 {
     class registryConnector
     {
-        private static string connectReg(string messageToSend, string registerIP)
+        public static string connectReg(string messageToSend, string registerIP)
         {
             Int32 port = 3128;
             TcpClient regSock = new TcpClient(registerIP, port);
