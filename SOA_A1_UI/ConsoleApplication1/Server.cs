@@ -10,6 +10,7 @@ using MessageLibrary;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
+using DataClass;
 
 namespace Service
 {
@@ -33,7 +34,7 @@ namespace Service
 
                 // Buffer for reading data
                 Byte[] bytes = new Byte[1048];
-                String data = null;
+                string data = null;
 
                 // Enter the listening loop.
                 while (true)
@@ -52,10 +53,10 @@ namespace Service
                     int i;
 
                     // Loop to receive all the data sent by the client.
-                    while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
-                    {
+                    stream.Read(bytes, 0, bytes.Length);
+                    
                         // Translate data bytes to a ASCII string.
-                        data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
+                        data = System.Text.Encoding.ASCII.GetString(bytes, 0, bytes.Length);
                         Console.WriteLine("Received: {0}", data);
 
                         // Process the data sent by the client.
@@ -64,32 +65,49 @@ namespace Service
                         byte[] msg = System.Text.Encoding.ASCII.GetBytes(data);
                         string request = msg.ToString();
 
-                    }
 
-                    string message;
-                    string response;
+                    //Format Request
+                    Data service = new Data();
+                    service.serviceTag = "GIORP-TOTALER";
 
-                    message = MessageLibrary.QueryTeamMessage()
-                    response = MessageLibrary.registryConnector.connectReg(message, regIP, regPort);
+                    char[] delimiterChars = { '|' };
+                    string[] words = request.Split(delimiterChars);
 
-                    stream = MessageLibrary.RegisterTeamMessage.ParseRegisterTeamMessage(response, stream);
+                    service.teamName = words[2];
+                    service.teamID = words[3];
+                    service.serviceName = words[5];
+                    service.numArg = Convert.ToInt32(words[7]);
+                    //arg 1
+                    service.argPosition[0] = Convert.ToInt32(words[12]);
+                    service.argName[0] = words[14];
+                    service.argDataType[0] = words[15];
+                    service.argValue1 = Convert.ToDouble(words[17]);
+                    //arg 2
+                    service.argPosition[1] = Convert.ToInt32(words[19]);
+                    service.argName[1] = words[20];
+                    service.argDataType[1] = words[21];
+                    service.argValue2 = words[23];
 
-                    IFormatter formatter1 = new BinaryFormatter();
-                    Data retData = (Data)formatter1.Deserialize(stream);
-
-                    if (retData.message == "OK")
+                    string message = MessageLibrary.QueryTeamMessage.SendQueryTeamMessage(service);
+                    
+                    string response = MessageLibrary.registryConnector.connectReg(message, "10.113.21.20", 3000);
+                    string ret;
+                    if ( response == "OK")
                     {
-                        return retData;
+                       double[] results = new double[5];
+                       results = Purchase_Totaller_BL.Totaller.getTotal(service.argValue2, service.argValue1);
+                       msg = Encoding.ASCII.GetBytes(MessageLibrary.ExecuteServiceMessage.createReturnMessage(results));
                     }
                     else
                     {
-                        //error log
+                        msg = Encoding.ASCII.GetBytes(ret);
                     }
-
                     // Send back a response.
                     stream.Write(msg, 0, msg.Length);
                     // Shutdown and end connection
                     client.Close();
+
+
                 }
             }
             catch (SocketException e)
