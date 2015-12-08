@@ -16,7 +16,7 @@ namespace MessageLibrary
 
             try
             {
-                regSock.Connect(registerIP, port);
+                //regSock.Connect(registerIP, port);
                 regStream = regSock.GetStream();
             }
             catch (Exception ex)

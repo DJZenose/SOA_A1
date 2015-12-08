@@ -29,13 +29,10 @@ namespace MessageLibrary
         * Parameters    : Stream of the class containing the needed data
         * Description   : Builds string to send to the registry
         */
-        public static string SendRegisterTeamMessage(Stream serialClass)
+        public static string SendRegisterTeamMessage(Data data)
         {
-            IFormatter formatter = new BinaryFormatter();
-            serialClass.Position = 0;
-            Data data = (Data)formatter.Deserialize(serialClass);
-            string message = BOM + "DRC|REG-TEAM|||" + EOS + 
-                        "INF|" + data.teamName + "|" + data.publishPort + "|" + EOS + EOM + EOS;
+            string message = BOM + "DRC|REG-TEAM|||" + EOS +
+                        "INF|" + data.teamName + "|||" + EOS + EOM + EOS;
             return message;
 
         }
@@ -46,11 +43,9 @@ namespace MessageLibrary
         * Parameters    : the response from the registry
         * Description   : parses response
         */
-        public static Stream ParseRegisterTeamMessage (string message, Stream serialClass)
+        public static Data ParseRegisterTeamMessage (string message)
         {
-            IFormatter formatter1 = new BinaryFormatter();
-            Data data = (Data)formatter1.Deserialize(serialClass);
-
+            Data data = new Data();
             char[] delimiterChars = { '|'};
             string[] words = message.Split(delimiterChars);
 
@@ -64,10 +59,7 @@ namespace MessageLibrary
                 data.message = message;
             }
 
-            IFormatter formatter2 = new BinaryFormatter();
-            Stream stream = new MemoryStream();
-            formatter2.Serialize(stream, data);
-            return stream;
+            return data;
         }
 
     }

@@ -62,11 +62,7 @@ namespace SOA_A1_UI
             publishData.publishPort = publishPort;
             publishData.securityLevel = 1;
 
-            IFormatter formatter = new BinaryFormatter();
-            Stream stream = new MemoryStream();
-            formatter.Serialize(stream, publishData);
-
-            message = MessageLibrary.PublishServiceMessage.SendPublishServiceMessage(stream);
+            message = MessageLibrary.PublishServiceMessage.SendPublishServiceMessage(publishData);
 
             response = MessageLibrary.registryConnector.connectReg(message, regIP, regPort);
 
@@ -80,17 +76,10 @@ namespace SOA_A1_UI
             string message;
             string response;
 
-            IFormatter formatter2 = new BinaryFormatter();
-            Stream stream = new MemoryStream();
-            formatter2.Serialize(stream, data);
-
-            message = MessageLibrary.RegisterTeamMessage.SendRegisterTeamMessage(stream);
+            message = MessageLibrary.RegisterTeamMessage.SendRegisterTeamMessage(data);
             response = MessageLibrary.registryConnector.connectReg(message, regIP, regPort);
 
-            stream = MessageLibrary.RegisterTeamMessage.ParseRegisterTeamMessage(response, stream);
-
-            IFormatter formatter1 = new BinaryFormatter();
-            Data retData = (Data)formatter1.Deserialize(stream);
+            Data retData = MessageLibrary.RegisterTeamMessage.ParseRegisterTeamMessage(response);
 
             if (retData.message == "OK")
             {
@@ -113,17 +102,10 @@ namespace SOA_A1_UI
             string message;
             string response;
 
-            IFormatter formatter2 = new BinaryFormatter();
-            Stream stream = new MemoryStream();
-            formatter2.Serialize(stream, data);
-
-            message = MessageLibrary.UnregisterTeamMessage.SendUnregisterTeamMessage(stream);
+            message = MessageLibrary.UnregisterTeamMessage.SendUnregisterTeamMessage(data);
             response = MessageLibrary.registryConnector.connectReg(message, regIP, regPort);
 
-            stream = MessageLibrary.UnregisterTeamMessage.ParseUnregisterTeamMessage(response, stream);
-
-            IFormatter formatter1 = new BinaryFormatter();
-            Data retData = (Data)formatter1.Deserialize(stream);
+            Data retData = MessageLibrary.UnregisterTeamMessage.ParseUnregisterTeamMessage(response);
 
             if (retData.message == "OK")
             {
@@ -137,7 +119,6 @@ namespace SOA_A1_UI
             }
 
             return retData;
-
         }
 
         public Data QueryService(Data data, string regIP, Int32 regPort)
@@ -145,18 +126,10 @@ namespace SOA_A1_UI
             string message;
             string response;
 
-            IFormatter formatter2 = new BinaryFormatter();
-            Stream stream = new MemoryStream();
-            formatter2.Serialize(stream, data);
-
-            message = MessageLibrary.QueryServiceMessage.SendQueryServiceMessage(stream);
-
+            message = MessageLibrary.QueryServiceMessage.SendQueryServiceMessage(data);
             response = MessageLibrary.registryConnector.connectReg(message, regIP, regPort);
 
-            stream = MessageLibrary.QueryServiceMessage.ParseQueryServiceMessage(response, stream);
-
-            IFormatter formatter1 = new BinaryFormatter();
-            Data retData = (Data)formatter1.Deserialize(stream);
+            Data retData = MessageLibrary.UnregisterTeamMessage.ParseUnregisterTeamMessage(response);
 
             if (retData.message == "OK")
             {
@@ -168,6 +141,7 @@ namespace SOA_A1_UI
                 log.logger(retData.message);
                 //error log
             }
+
 
             return retData;
 
@@ -178,12 +152,7 @@ namespace SOA_A1_UI
             string message;
             string response;
 
-            IFormatter formatter2 = new BinaryFormatter();
-            Stream stream = new MemoryStream();
-            formatter2.Serialize(stream, data);
-
-            message = MessageLibrary.ExecuteServiceMessage.SendExecuteServiceMessage(stream);
-
+            message = MessageLibrary.ExecuteServiceMessage.SendExecuteServiceMessage(data);
             response = MessageLibrary.registryConnector.connectReg(message, regIP, regPort);
 
             Data retData = MessageLibrary.ExecuteServiceMessage.ParseExecuteServiceMessage(response);
@@ -200,7 +169,6 @@ namespace SOA_A1_UI
             }
 
             return retData;
-
         }
     }
 }

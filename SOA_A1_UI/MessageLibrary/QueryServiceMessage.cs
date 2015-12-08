@@ -28,13 +28,9 @@ namespace MessageLibrary
         * Parameters    : Stream of the class containing the needed data
         * Description   : Builds string to send to the registry
         */
-        public static string SendQueryServiceMessage(Stream serialClass)
+        public static string SendQueryServiceMessage(Data data)
         {
-            string message;
-            IFormatter formatter = new BinaryFormatter();
-            Data data = (Data)formatter.Deserialize(serialClass);
-
-            message = BOM + "DRC|QUERY-SERVICE|<" + data.teamName + ">|<" + data.teamID + ">|"+ EOS +
+            string message = BOM + "DRC|QUERY-SERVICE|<" + data.teamName + ">|<" + data.teamID + ">|"+ EOS +
                    "SRV|<" + data.serviceTag + ">|" + data.publishPort + "|" + EOS + EOM + EOS;
             return message;
         }
@@ -45,10 +41,10 @@ namespace MessageLibrary
         * Parameters    : Stream of the class containing the needed data
         * Description   : Builds string to send to the registry
         */
-        public static Stream ParseQueryServiceMessage(string message, Stream serialClass)
+        public static Data ParseQueryServiceMessage(string message)
         {
             IFormatter formatter1 = new BinaryFormatter();
-            Data data = (Data)formatter1.Deserialize(serialClass);
+            Data data = new Data();
 
             char[] delimiterChars = {'|'};
             string[] words = message.Split(delimiterChars);
@@ -97,11 +93,7 @@ namespace MessageLibrary
             {
                 data.message = message;
             }
-
-            IFormatter formatter2 = new BinaryFormatter();
-            Stream stream = new MemoryStream();
-            formatter2.Serialize(stream, data);
-            return stream;
+            return data;
         }
     }
 }

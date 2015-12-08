@@ -30,10 +30,8 @@ namespace MessageLibrary
         * Parameters    : Stream of the class containing the needed data
         * Description   : Builds string to send to the registry
         */
-        public static string SendUnregisterTeamMessage(Stream serialClass)
+        public static string SendUnregisterTeamMessage(Data data)
         {
-            IFormatter formatter1 = new BinaryFormatter();
-            Data data = (Data)formatter1.Deserialize(serialClass);
             return BOM + "DRC|UNREG-TEAM|<" + data.teamName + ">|<" + data.teamID + ">|" + EOS + EOM + EOS;
         }
 
@@ -43,10 +41,9 @@ namespace MessageLibrary
         * Parameters    : The response message and the serialized class
         * Description   : Parses response
         */
-        public static Stream ParseUnregisterTeamMessage (string message, Stream serialClass)
+        public static Data ParseUnregisterTeamMessage (string message)
         {
-            IFormatter formatter1 = new BinaryFormatter();
-            Data data = (Data)formatter1.Deserialize(serialClass);
+            Data data = new Data();
 
             char[] delimiterChars = {'|'};
             string[] words = message.Split(delimiterChars);
@@ -61,10 +58,7 @@ namespace MessageLibrary
                 data.log = message;
             }
 
-            IFormatter formatter2 = new BinaryFormatter();
-            Stream stream = new MemoryStream();
-            formatter2.Serialize(stream, data);
-            return stream;
+            return data;
         }
     }
 }

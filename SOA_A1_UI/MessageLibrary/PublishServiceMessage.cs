@@ -28,14 +28,9 @@ namespace MessageLibrary
         * Parameters    : Stream of the class containing the needed data
         * Description   : Published a Service from the client !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         */
-        public static string SendPublishServiceMessage(Stream serializedClass)
+        public static string SendPublishServiceMessage(Data data)
         {
-            string message;
-
-            IFormatter formatter = new BinaryFormatter();
-            serializedClass.Position = 0;
-            Data data = (Data)formatter.Deserialize(serializedClass);
-            message = BOM + "DRC|PUB-SERVICE|<" + data.teamName + ">|<" + data.teamID + ">|" + EOS +
+            string message = BOM + "DRC|PUB-SERVICE|<" + data.teamName + ">|<" + data.teamID + ">|" + EOS +
                     "SRV|<" + data.serviceTag + ">|<" + data.serviceName + ">|<" + data.securityLevel + ">|<" + data.numArg + ">|<" + data.numResp + ">|<" + data.description + ">|" + EOS +
                     "ARG|<" + data.argPosition[0] + ">|<" + data.argName[0] + ">|<" + data.argDataType[0] + ">|mandatory||" + EOS +
                     "ARG|<" + data.argPosition[1] + ">|<" + data.argName[1] + ">|<" + data.argDataType[1] + ">|mandatory||" + EOS +

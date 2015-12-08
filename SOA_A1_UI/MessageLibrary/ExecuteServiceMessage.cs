@@ -30,13 +30,9 @@ namespace MessageLibrary
         * Parameters    : Stream of the class containing the needed data
         * Description   : Builds string to send to the registry
         */
-        public static string SendExecuteServiceMessage(Stream SerialStream)
+        public static string SendExecuteServiceMessage(Data data)
         {
-            string message;
-            IFormatter formatter = new BinaryFormatter();
-            Data data = (Data)formatter.Deserialize(SerialStream);
-
-            message = BOM + "DRC|EXEC-SERVICE|<" + data.teamName + ">|<" + data.teamID + ">|" + EOS +
+            string message = BOM + "DRC|EXEC-SERVICE|<" + data.teamName + ">|<" + data.teamID + ">|" + EOS +
             "SRV||<" + data.serviceName + ">||<" + data.numArg + ">|||" + EOS + 
             "ARG |<" + data.argPosition[8] + ">|<" + data.argName[0] + ">|<" + data.argDataType[0] + ">||<" + data.argValue1 + ">|" + EOS +
             "ARG |<" + data.argPosition[13] + ">|<" + data.argName[1] + ">|<" + data.argDataType[1] + ">||<" + data.argValue2 + ">|" + EOS + EOM + EOS;
