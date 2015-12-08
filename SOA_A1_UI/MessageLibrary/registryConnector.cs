@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MessageLibrary
 {
-    class registryConnector
+    public class registryConnector
     {
         public static string connectReg(string messageToSend, string registerIP)
         {
