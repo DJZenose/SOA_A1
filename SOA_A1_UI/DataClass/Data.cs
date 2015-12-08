@@ -29,6 +29,7 @@ namespace DataClass
         public double[] respValue = new double[5];
         public string publishIP;
         public int publishPort;
+        public string message;
 
         public Data()
         {
