@@ -24,7 +24,7 @@ namespace SOA_A1_UI
     class Service
     {
         Logging log = new Logging();
-        public string PublishService( string publishIP, Int32 publishPort, string regIP, Int32 regPort, string teamName, string teamID)
+        public string PublishService( string regIP, Int32 regPort, string teamName, string teamID)
         {
             string message;
             string response;
@@ -58,8 +58,8 @@ namespace SOA_A1_UI
             publishData.respDataType[2] = "double";
             publishData.respDataType[3] = "double";
             publishData.respDataType[4] = "double";
-            publishData.publishIP = publishIP;
-            publishData.publishPort = 11000;
+            publishData.publishIP = regIP;
+            publishData.publishPort = regPort;
             publishData.securityLevel = 1;
 
             message = MessageLibrary.PublishServiceMessage.SendPublishServiceMessage(publishData);
