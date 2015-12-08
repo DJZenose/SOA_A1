@@ -8,7 +8,7 @@ namespace Purchase_Totaller_BL
 {
     public class Totaller
     {
-        public virtual double[] getTotal(string regionArg, double totalUnmodified)
+        public static double[] getTotal(string regionArg, double totalUnmodified)
         {
             int regionNum = 0;
             double[] finalValues = new double[5];
