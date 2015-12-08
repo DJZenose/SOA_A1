@@ -41,10 +41,8 @@ namespace MessageLibrary
         * Parameters    : Stream of the class containing the needed data
         * Description   : Builds string to send to the registry
         */
-        public static Data ParseQueryServiceMessage(string message)
+        public static Data ParseQueryServiceMessage( Data data, string message)
         {
-            IFormatter formatter1 = new BinaryFormatter();
-            Data data = new Data();
 
             char[] delimiterChars = {'|'};
             string[] words = message.Split(delimiterChars);

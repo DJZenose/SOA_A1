@@ -129,7 +129,7 @@ namespace SOA_A1_UI
             message = MessageLibrary.QueryServiceMessage.SendQueryServiceMessage(data);
             response = MessageLibrary.registryConnector.connectReg(message, regIP, regPort);
 
-            Data retData = MessageLibrary.QueryServiceMessage.ParseQueryServiceMessage(response);
+            Data retData = MessageLibrary.QueryServiceMessage.ParseQueryServiceMessage(data,response);
 
             if (retData.message == "OK")
             {
