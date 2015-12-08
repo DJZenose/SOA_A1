@@ -33,8 +33,8 @@ namespace MessageLibrary
         {
 
             string message;
-            message = BOM + "DRC|QUERY-TEAM|<" + data.teamName + ">|<" + data.teamID + ">|" + EOS +
-                    "INF|<" + data.teamName + ">|<" + data.teamID + ">|<" + data.serviceTag + ">|" + EOS + EOM + EOS;
+            message = BOM + "DRC|QUERY-TEAM|" + data.teamName + "|" + data.teamID + "|" + EOS +
+                    "INF|" + data.teamName + "|" + data.teamID + "|" + data.serviceTag + "|" + EOS + EOM + EOS;
 
             return message;
         }

@@ -32,7 +32,7 @@ namespace MessageLibrary
         */
         public static string SendUnregisterTeamMessage(Data data)
         {
-            return BOM + "DRC|UNREG-TEAM|<" + data.teamName + ">|<" + data.teamID + ">|" + EOS + EOM + EOS;
+            return BOM + "DRC|UNREG-TEAM|" + data.teamName + "|" + data.teamID + "|" + EOS + EOM + EOS;
         }
 
         /*

@@ -32,10 +32,10 @@ namespace MessageLibrary
         */
         public static string SendExecuteServiceMessage(Data data)
         {
-            string message = BOM + "DRC|EXEC-SERVICE|<" + data.teamName + ">|<" + data.teamID + ">|" + EOS +
-            "SRV||<" + data.serviceName + ">||<" + data.numArg + ">|||" + EOS + 
-            "ARG |<" + data.argPosition[8] + ">|<" + data.argName[0] + ">|<" + data.argDataType[0] + ">||<" + data.argValue1 + ">|" + EOS +
-            "ARG |<" + data.argPosition[13] + ">|<" + data.argName[1] + ">|<" + data.argDataType[1] + ">||<" + data.argValue2 + ">|" + EOS + EOM + EOS;
+            string message = BOM + "DRC|EXEC-SERVICE|" + data.teamName + "|" + data.teamID + "|" + EOS +
+            "SRV||" + data.serviceName + "||" + data.numArg + "|||" + EOS + 
+            "ARG |" + data.argPosition[8] + "|" + data.argName[0] + "|" + data.argDataType[0] + "||" + data.argValue1 + "|" + EOS +
+            "ARG |" + data.argPosition[13] + "|" + data.argName[1] + "|" + data.argDataType[1] + "||" + data.argValue2 + "|" + EOS + EOM + EOS;
 
             return message;
         }
@@ -91,12 +91,12 @@ namespace MessageLibrary
         {
             string message;
 
-            message = BOM + "PUB | OK |||< 5 >|" + EOS +
-                    "RSP |<1>|<SUB>|<double>|" + returnVals[0] + "|" + EOS +
-                    "RSP |<2>|<PST>|<double>|" + returnVals[1] + "|" + EOS +
-                    "RSP |<3>|<HST>|<double>|" + returnVals[2] + "|" + EOS +
-                    "RSP |<4>|<GST>|<double>|" + returnVals[3] + "|" + EOS +
-                    "RSP |<5>|<TPA>|<double>|" + returnVals[4] + "|" + EOS;
+            message = BOM + "PUB | OK ||| 5 |" + EOS +
+                    "RSP |1|SUB|double|" + returnVals[0] + "|" + EOS +
+                    "RSP |2|PST|double|" + returnVals[1] + "|" + EOS +
+                    "RSP |3|HST|double|" + returnVals[2] + "|" + EOS +
+                    "RSP |4|GST|double|" + returnVals[3] + "|" + EOS +
+                    "RSP |5|TPA|double|" + returnVals[4] + "|" + EOS;
 
             return message;
         }
