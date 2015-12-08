@@ -4,15 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataClass;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 namespace MessageLibrary
 {
-    class ExecuteServiceMessage
+    public class ExecuteServiceMessage
     {
-        public string SendExecuteServiceMessage(string teamName, string teamID, string serviceName,  int numArgs, int argPos, string argName, string argType, string argValue)
+        public string SendExecuteServiceMessage(Stream SerialStream)
         {
-            return "DRC|EXEC-SERVICE|<" + teamName + ">|<" + teamID + ">|SRV||<" + serviceName + ">||<" + numArgs + ">|||ARG|<" + argPos + ">|<" + argName + ">|<" + argType + ">||<" + argValue + ">|";
+            string message;
+            IFormatter formatter = new BinaryFormatter();
+            Data data = (Data)formatter.Deserialize(SerialStream);
 
+            message = "DRC|EXEC-SERVICE|<" + data.teamName + ">|<" + teamID + ">|SRV||<" + serviceName + ">||<" + numArgs + ">|||ARG|<" + argPos + ">|<" + argName + ">|<" + argType + ">||<" + argValue + ">|";
+            return message;
         }
 
         public Data ParseExecuteServiceMessage(string dataToParse)

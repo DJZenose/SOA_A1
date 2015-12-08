@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MessageLibrary
 {
-    class QueryServiceMessage
+    public class QueryServiceMessage
     {
         public string SendQueryServiceMessage(string teamName, string teamID, string tagName)
         {

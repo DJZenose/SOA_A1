@@ -10,7 +10,7 @@ using DataClass;
 
 namespace MessageLibrary
 {
-    class PublishServiceMessage
+    public class PublishServiceMessage
     {
         public  string SendPublishServiceMessage(Stream serializedClass)
         {

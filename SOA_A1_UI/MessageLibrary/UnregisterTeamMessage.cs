@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MessageLibrary
 {
-    class UnregisterTeamMessage
+    public class UnregisterTeamMessage
     {
         public string SendUnregisterTeamMessage(string teamName, string teamID)
         {
