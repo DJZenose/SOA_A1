@@ -85,7 +85,6 @@ namespace MessageLibrary
             Stream stream = new MemoryStream();
             formatter.Serialize(stream, dataParsed);
             return stream;
-
         }
     }
 }

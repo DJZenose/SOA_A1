@@ -140,10 +140,13 @@ namespace Service
             Int32 port = 3128;
             TcpClient client = new TcpClient(registerIP, port);
 
-            ExecuteServiceMessage.SendExecuteServiceMessage
+            string message = QueryTeamMessage.SendQueryTeamMessage(ExecuteServiceMessage.ParseExecuteServiceMessage(data));
 
             // Translate the passed message into ASCII and store it as a Byte array.
             Byte[] datatoSend = System.Text.Encoding.ASCII.GetBytes(message);
+            
+            NetworkStream stream = client.GetStream();
+            stream.Write(datatoSend, 0, data.Length);
         }
 
         private static void SendToClient(Socket handler, String data)
