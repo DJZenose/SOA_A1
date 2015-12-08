@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*************
+*Programmers    : Connor McQuade & Brandon Erb & Dallas Thibodeau
+*Professor      : Ed Barsalou
+*Date           : 6/12/2015
+*FILE           : PublishServiceMessage
+*Description    : Class Library for Messaging
+**************/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +19,13 @@ namespace MessageLibrary
 {
     public class PublishServiceMessage
     {
-        public  string SendPublishServiceMessage(Stream serializedClass)
+        /*
+        * Method        : SendExecuteServiceMessage
+        * Returns       : string of request message
+        * Parameters    : Stream of the class containing the needed data
+        * Description   : Published a Service from the client !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        */
+        public string SendPublishServiceMessage(Stream serializedClass)
         {
             string message;
 
@@ -29,24 +42,18 @@ namespace MessageLibrary
                     "RSP|<" + data.responsePos[4] + ">|<" + data.responseName[4] + ">|<" + data.respDataType[4] + ">||" + "\n" +
                     "MCH|<" + data.publishIP + ">|<" + data.publishPort + ">|";
 
-            /*
-            message = "DRC|PUB-SERVICE|<" + data.teamName + ">|<" + data.teamID + ">|" + "\n" +
-                    "SRV|<" + data.tagName + ">|<" + data.serviceName + ">|<" + data.securityLevel + ">|<" + data.numArgs + ">|<" + data.numResponses + ">|<" + data.description + ">|" + "\n" +
-                    "ARG|<" + data.argPos + ">|<" + data.argName + ">|<" + data.argType + ">|[mandatory|optional]||" + "\n" +
-                    "ARG|<" + data.argPos + ">|<" + data.argName + ">|<" + data.argType + ">|[mandatory|optional]||" + "\n" +
-                    "RSP|<" + data.respPos + ">|<" + data.respName + ">|<" + data.respType + ">||" + "\n" +
-                    "RSP|<" + data.respPos + ">|<" + data.respName + ">|<" + data.respType + ">||" + "\n" +
-                    "RSP|<" + data.respPos + ">|<" + data.respName + ">|<" + data.respType + ">||" + "\n" +
-                    "RSP|<" + data.respPos + ">|<" + data.respName + ">|<" + data.respType + ">||" + "\n" +
-                    "RSP|<" + data.respPos + ">|<" + data.respName + ">|<" + data.respType + ">||" + "\n" +
-                    "MCH|<" + data.psIP + ">|<" + data.pPort + ">|";
-            */
             return message;
         }
 
-        public string ParsePublishServiceMessage()
+        /*
+        * Method        : ParsePublishServiceMessage
+        * Returns       : String of the reply
+        * Parameters    : String of the response
+        * Description   : Builds string to send to the registry
+        */
+        public string ParsePublishServiceMessage(string response)
         {
-            return "";
+            return response;
         }
     }
 }
