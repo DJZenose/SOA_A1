@@ -42,7 +42,7 @@ namespace SOA_A1_UI
             publishData.argName[0] = "region"; //see stupid registry
             publishData.argName[1] = "totals";
             publishData.argDataType[0] = "string";
-            publishData.argDataType[0] = "double";
+            publishData.argDataType[1] = "double";
             publishData.responsePos[0] = 1;
             publishData.responsePos[1] = 2;
             publishData.responsePos[2] = 3;

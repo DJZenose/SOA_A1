@@ -46,7 +46,8 @@ namespace SOA_A1_UI
             dataLocal.serviceTag = "GIORP-TOTAL";
             dataLocal.publishIP = serviceIP;
             dataLocal.publishPort = Convert.ToInt32(servicePort);
-            ser.RegisterTeam(dataLocal, serviceIP, Convert.ToInt32(servicePort));
+            Data teamID = ser.RegisterTeam(dataLocal, serviceIP, Convert.ToInt32(servicePort));
+            dataLocal.teamID = teamID.teamID;
             ser.PublishService(dataLocal.publishIP, dataLocal.publishPort, serviceIP, Convert.ToInt32(servicePort), dataLocal.teamName, dataLocal.teamID);
         }
         //useless, but im too scared to remove it

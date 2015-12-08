@@ -30,16 +30,16 @@ namespace MessageLibrary
         */
         public static string SendPublishServiceMessage(Data data)
         {
-            string message = BOM + "DRC|PUB-SERVICE|<" + data.teamName + ">|<" + data.teamID + ">|" + EOS +
-                    "SRV|<" + data.serviceTag + ">|<" + data.serviceName + ">|<" + data.securityLevel + ">|<" + data.numArg + ">|<" + data.numResp + ">|<" + data.description + ">|" + EOS +
-                    "ARG|<" + data.argPosition[0] + ">|<" + data.argName[0] + ">|<" + data.argDataType[0] + ">|mandatory||" + EOS +
-                    "ARG|<" + data.argPosition[1] + ">|<" + data.argName[1] + ">|<" + data.argDataType[1] + ">|mandatory||" + EOS +
-                    "RSP|<" + data.responsePos[0] + ">|<" + data.responseName[0] + ">|<" + data.respDataType[0] + ">||" + EOS +
-                    "RSP|<" + data.responsePos[1] + ">|<" + data.responseName[1] + ">|<" + data.respDataType[1] + ">||" + EOS +
-                    "RSP|<" + data.responsePos[2] + ">|<" + data.responseName[2] + ">|<" + data.respDataType[2] + ">||" + EOS +
-                    "RSP|<" + data.responsePos[3] + ">|<" + data.responseName[3] + ">|<" + data.respDataType[3] + ">||" + EOS +
-                    "RSP|<" + data.responsePos[4] + ">|<" + data.responseName[4] + ">|<" + data.respDataType[4] + ">||" + EOS +
-                    "MCH|<" + data.publishIP + ">|<" + data.publishPort + ">|" + EOS + EOM + EOS;
+            string message = BOM + "DRC|PUB-SERVICE|" + data.teamName + "|" + data.teamID + "|" + EOS +
+                    "SRV|" + data.serviceTag + "|" + data.serviceName + "|" + data.securityLevel + "|" + data.numArg + "|" + data.numResp + "|" + data.description + "|" + EOS +
+                    "ARG|" + data.argPosition[0] + "|" + data.argName[0] + "|" + data.argDataType[0] + "|mandatory||" + EOS +
+                    "ARG|" + data.argPosition[1] + "|" + data.argName[1] + "|" + data.argDataType[1] + "|mandatory||" + EOS +
+                    "RSP|" + data.responsePos[0] + "|" + data.responseName[0] + "|" + data.respDataType[0] + "||" + EOS +
+                    "RSP|" + data.responsePos[1] + "|" + data.responseName[1] + "|" + data.respDataType[1] + "||" + EOS +
+                    "RSP|" + data.responsePos[2] + "|" + data.responseName[2] + "|" + data.respDataType[2] + "||" + EOS +
+                    "RSP|" + data.responsePos[3] + "|" + data.responseName[3] + "|" + data.respDataType[3] + "||" + EOS +
+                    "RSP|" + data.responsePos[4] + "|" + data.responseName[4] + "|" + data.respDataType[4] + "||" + EOS +
+                    "MCH|" + data.publishIP + "|" + data.publishPort + "|" + EOS + EOM + EOS;
 
             return message;
         }

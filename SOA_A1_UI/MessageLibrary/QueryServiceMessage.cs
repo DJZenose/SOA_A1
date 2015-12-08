@@ -30,8 +30,8 @@ namespace MessageLibrary
         */
         public static string SendQueryServiceMessage(Data data)
         {
-            string message = BOM + "DRC|QUERY-SERVICE|<" + data.teamName + ">|<" + data.teamID + ">|"+ EOS +
-                   "SRV|<" + data.serviceTag + ">|" + data.publishPort + "|" + EOS + EOM + EOS;
+            string message = BOM + "DRC|QUERY-SERVICE|" + data.teamName + "|" + data.teamID + "|"+ EOS +
+                   "SRV|" + data.serviceTag + "||||||" + EOS + EOM + EOS;
             return message;
         }
 
