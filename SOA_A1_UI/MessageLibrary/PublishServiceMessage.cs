@@ -37,8 +37,8 @@ namespace MessageLibrary
             Data data = (Data)formatter.Deserialize(serializedClass);
             message = BOM + "DRC|PUB-SERVICE|<" + data.teamName + ">|<" + data.teamID + ">|" + EOS +
                     "SRV|<" + data.serviceTag + ">|<" + data.serviceName + ">|<" + data.securityLevel + ">|<" + data.numArg + ">|<" + data.numResp + ">|<" + data.description + ">|" + EOS +
-                    "ARG|<" + data.argPosition[0] + ">|<" + data.argName[0] + ">|<" + data.argDataType[0] + ">|[mandatory|optional]||" + EOS +
-                    "ARG|<" + data.argPosition[1] + ">|<" + data.argName[1] + ">|<" + data.argDataType[1] + ">|[mandatory|optional]||" + EOS +
+                    "ARG|<" + data.argPosition[0] + ">|<" + data.argName[0] + ">|<" + data.argDataType[0] + ">|mandatory||" + EOS +
+                    "ARG|<" + data.argPosition[1] + ">|<" + data.argName[1] + ">|<" + data.argDataType[1] + ">|mandatory||" + EOS +
                     "RSP|<" + data.responsePos[0] + ">|<" + data.responseName[0] + ">|<" + data.respDataType[0] + ">||" + EOS +
                     "RSP|<" + data.responsePos[1] + ">|<" + data.responseName[1] + ">|<" + data.respDataType[1] + ">||" + EOS +
                     "RSP|<" + data.responsePos[2] + ">|<" + data.responseName[2] + ">|<" + data.respDataType[2] + ">||" + EOS +
