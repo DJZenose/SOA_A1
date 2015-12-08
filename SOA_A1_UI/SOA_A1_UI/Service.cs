@@ -73,7 +73,7 @@ namespace SOA_A1_UI
         }
 
         //Register Team
-        private string RegisterTeam(Data data, string regIP, Int32 regPort)
+        private Data RegisterTeam(Data data, string regIP, Int32 regPort)
         {
             string message;
             string response;
@@ -85,22 +85,53 @@ namespace SOA_A1_UI
             message = MessageLibrary.RegisterTeamMessage.SendRegisterTeamMessage(stream);
             response = MessageLibrary.registryConnector.connectReg(message, regIP, regPort);
 
+            stream = MessageLibrary.RegisterTeamMessage.ParseRegisterTeamMessage(response, stream);
+
+            IFormatter formatter1 = new BinaryFormatter();
+            Data retData = (Data)formatter1.Deserialize(stream);
+
+            if (retData.message == "OK")
+            {
+                return retData;
+            }
+            else
+            {
+                //error log
+            }
+
+            return retData;
+
         }
 
         //Unregister Team
-        private void UnregisterTeam()
+        private Data UnregisterTeam(Data data, string regIP, Int32 regPort)
         {
             string message;
+            string response;
 
+            IFormatter formatter2 = new BinaryFormatter();
+            Stream stream = new MemoryStream();
+            formatter2.Serialize(stream, data);
 
-            //serialize the current data object
-            Stream stream = serialize();
-            //grab the message created
             message = MessageLibrary.UnregisterTeamMessage.SendUnregisterTeamMessage(stream);
+            response = MessageLibrary.registryConnector.connectReg(message, regIP, regPort);
 
-            //send a message with the team name and our current id to unregister us
-            StartClient(message, "UR");
-            stream.Close();
+            stream = MessageLibrary.UnregisterTeamMessage.ParseUnregisterTeamMessage(response, stream);
+
+            IFormatter formatter1 = new BinaryFormatter();
+            Data retData = (Data)formatter1.Deserialize(stream);
+
+            if (retData.message == "OK")
+            {
+                return retData;
+            }
+            else
+            {
+                //error log
+            }
+
+            return retData;
+
         }
     }
 }

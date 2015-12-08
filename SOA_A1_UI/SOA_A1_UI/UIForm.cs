@@ -145,86 +145,6 @@ namespace SOA_A1_UI
             return true;
         }
 
-        private void ExecuteService()
-        {
-            string message;
-
-            //serialize the current data object
-            Stream stream = serialize();
-            //grab the message created
-            message = MessageLibrary.ExecuteServiceMessage.SendExecuteServiceMessage(stream);
-        }
-        private void QueryTeamService()
-        {
-            string message;
-
-            //serialize the current data object
-            Stream stream = serialize();
-            //grab the message created
-            message = MessageLibrary.QueryTeamMessage.SendQueryTeamMessage(stream);
-
-            StartClient(message, "QT");
-        }
-        //Query Service
-        private void QueryService()
-        {
-            string message;
-            
-
-            //serialize the current data object
-            Stream stream = serialize();
-            //grab the message created
-            message = MessageLibrary.QueryServiceMessage.SendQueryServiceMessage(stream);
-            
-            //send the message to the client and signal the type of message
-            StartClient(message, "QS");
-            stream.Close();
-        }
-
-        //Register Team
-        private void RegisterTeam()
-        {
-            string message;
-
-            //serialize the current data object
-            Stream stream = serialize();
-            //grab the message created
-            message = MessageLibrary.RegisterTeamMessage.SendRegisterTeamMessage(stream);
-
-            //send the message
-            StartClient(message, "RT");
-            stream.Close();
-        }
-        //Unregister Team
-        private void UnregisterTeam()
-        {
-            string message;
-            
-
-            //serialize the current data object
-            Stream stream = serialize();
-            //grab the message created
-            message = MessageLibrary.UnregisterTeamMessage.SendUnregisterTeamMessage(stream);
-
-            //send a message with the team name and our current id to unregister us
-            StartClient(message, "UR");
-            stream.Close();
-        }
-
-        private void PublishService()
-        {
-            string message;
-
-            //serialize the current data object
-            Stream stream = serialize();
-            //grab the message created
-            message = MessageLibrary.PublishServiceMessage.SendPublishServiceMessage(stream);
-
-            //initiate and perform the publishService
-            StartClient(message, "PS");
-            stream.Close();
-        }
-
         private Stream serialize()
         {
             IFormatter formatter = new BinaryFormatter();
@@ -315,15 +235,9 @@ namespace SOA_A1_UI
         {
             try
             {
-                //create a new client socket ...
-                m_socWorker = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
-                String szIPSelected = "142.156.111.70";
-                String szPort = "5555";
-                int alPort = System.Convert.ToInt16(szPort, 10);
+                TcpClient regSock = new TcpClient(serviceIP, Convert.ToInt32(servicePort));
+                regSock.Connect(serviceIP, Convert.ToInt32(servicePort));
 
-                System.Net.IPAddress remoteIPAddress = System.Net.IPAddress.Parse(szIPSelected);
-                System.Net.IPEndPoint remoteEndPoint = new System.Net.IPEndPoint(remoteIPAddress, alPort);
-                m_socWorker.Connect(remoteEndPoint);
             }
             catch (System.Net.Sockets.SocketException se)
             {

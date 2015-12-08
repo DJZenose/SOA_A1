@@ -31,6 +31,7 @@ namespace DataClass
         public string publishIP;
         public int publishPort;
         public string message;
+        public string log;
 
         public Data()
         {

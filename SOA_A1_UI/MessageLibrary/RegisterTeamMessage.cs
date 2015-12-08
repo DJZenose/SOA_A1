@@ -50,7 +50,7 @@ namespace MessageLibrary
             IFormatter formatter1 = new BinaryFormatter();
             Data data = (Data)formatter1.Deserialize(serialClass);
 
-            char[] delimiterChars = { '|', '|', '|' };
+            char[] delimiterChars = { '|'};
             string[] words = message.Split(delimiterChars);
 
             if (words[1] == "OK")

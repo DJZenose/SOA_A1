@@ -48,16 +48,17 @@ namespace MessageLibrary
             IFormatter formatter1 = new BinaryFormatter();
             Data data = (Data)formatter1.Deserialize(serialClass);
 
-            char[] delimiterChars = { '|', '|', '|' };
+            char[] delimiterChars = {'|'};
             string[] words = message.Split(delimiterChars);
 
             if (words[1] == "OK")
             {
                 data.message = words[1];
+                data.log = message;
             }
             else
             {
-                data.message = message;
+                data.log = message;
             }
 
             IFormatter formatter2 = new BinaryFormatter();
