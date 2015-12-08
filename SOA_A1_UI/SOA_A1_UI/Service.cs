@@ -23,7 +23,7 @@ namespace SOA_A1_UI
 {
     class Service
     {
-        private string PublishService( string publishIP, Int32 publishPort, string regIP, Int32 regPort, string teamName, string teamID)
+        public string PublishService( string publishIP, Int32 publishPort, string regIP, Int32 regPort, string teamName, string teamID)
         {
             string message;
             string response;
@@ -73,7 +73,7 @@ namespace SOA_A1_UI
         }
 
         //Register Team
-        private Data RegisterTeam(Data data, string regIP, Int32 regPort)
+        public Data RegisterTeam(Data data, string regIP, Int32 regPort)
         {
             string message;
             string response;
@@ -104,7 +104,7 @@ namespace SOA_A1_UI
         }
 
         //Unregister Team
-        private Data UnregisterTeam(Data data, string regIP, Int32 regPort)
+        public Data UnregisterTeam(Data data, string regIP, Int32 regPort)
         {
             string message;
             string response;
@@ -117,6 +117,68 @@ namespace SOA_A1_UI
             response = MessageLibrary.registryConnector.connectReg(message, regIP, regPort);
 
             stream = MessageLibrary.UnregisterTeamMessage.ParseUnregisterTeamMessage(response, stream);
+
+            IFormatter formatter1 = new BinaryFormatter();
+            Data retData = (Data)formatter1.Deserialize(stream);
+
+            if (retData.message == "OK")
+            {
+                return retData;
+            }
+            else
+            {
+                //error log
+            }
+
+            return retData;
+
+        }
+
+        public Data QueryService(Data data, string regIP, Int32 regPort)
+        {
+            string message;
+            string response;
+
+            IFormatter formatter2 = new BinaryFormatter();
+            Stream stream = new MemoryStream();
+            formatter2.Serialize(stream, data);
+
+            message = MessageLibrary.QueryServiceMessage.SendQueryServiceMessage(stream);
+
+            response = MessageLibrary.registryConnector.connectReg(message, regIP, regPort);
+
+            stream = MessageLibrary.QueryServiceMessage.ParseQueryServiceMessage(response, stream);
+
+            IFormatter formatter1 = new BinaryFormatter();
+            Data retData = (Data)formatter1.Deserialize(stream);
+
+            if (retData.message == "OK")
+            {
+                return retData;
+            }
+            else
+            {
+                //error log
+            }
+
+            return retData;
+
+        }
+
+        public Data ExecuteService(Data data, string regIP, Int32 regPort)
+        {
+            string message;
+            string response;
+
+            IFormatter formatter2 = new BinaryFormatter();
+            Stream stream = new MemoryStream();
+            formatter2.Serialize(stream, data);
+
+            message = MessageLibrary.ExecuteServiceMessage.SendExecuteServiceMessage(stream);
+
+            response = MessageLibrary.registryConnector.connectReg(message, regIP, regPort);
+
+            stream = MessageLibrary.ExecuteServiceMessage.ParseExecuteServiceMessage(response);
 
             IFormatter formatter1 = new BinaryFormatter();
             Data retData = (Data)formatter1.Deserialize(stream);
