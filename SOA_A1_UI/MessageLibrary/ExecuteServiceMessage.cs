@@ -30,7 +30,7 @@ namespace MessageLibrary
         * Parameters    : Stream of the class containing the needed data
         * Description   : Builds string to send to the registry
         */
-        public string SendExecuteServiceMessage(Stream SerialStream)
+        public static string SendExecuteServiceMessage(Stream SerialStream)
         {
             string message;
             IFormatter formatter = new BinaryFormatter();
@@ -50,7 +50,7 @@ namespace MessageLibrary
         * Parameters    : string of the registry reply
         * Description   : parses registry response
         */
-        public Stream ParseExecuteServiceMessage(string dataToParse)
+        public static Stream ParseExecuteServiceMessage(string dataToParse)
         {
             Data dataParsed = new Data();
             char[] delimiters = new char[] { '|' };
@@ -85,7 +85,6 @@ namespace MessageLibrary
             Stream stream = new MemoryStream();
             formatter.Serialize(stream, dataParsed);
             return stream;
-
         }
     }
 }
