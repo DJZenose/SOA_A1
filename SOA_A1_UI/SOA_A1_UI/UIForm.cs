@@ -33,8 +33,9 @@ namespace SOA_A1_UI
         {
             InitializeComponent();
 
-            dataLocal.teamName = "Team Condabran";
-            dataLocal.serviceTag = "totalPurchase";
+            dataLocal.teamName = ConfigurationManager.AppSettings.Get("TeamName");
+            dataLocal.serviceTag = "GIORP-TOTAL";
+
             PublishService();
         }
 

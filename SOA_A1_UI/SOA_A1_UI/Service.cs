@@ -69,7 +69,7 @@ namespace SOA_A1_UI
 
             response = MessageLibrary.registryConnector.connectReg(message, regIP, regPort);
 
-            return response;//logggggggg
+            return response;
         }
 
         //Register Team
