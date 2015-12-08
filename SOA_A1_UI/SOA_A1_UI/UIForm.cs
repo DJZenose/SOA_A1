@@ -31,6 +31,7 @@ namespace SOA_A1_UI
         public UIForm()
         {
             InitializeComponent();
+
             dataLocal.teamName = "Team Condabran";
             dataLocal.serviceTag = "totalPurchase";
             PublishService();
@@ -366,6 +367,5 @@ namespace SOA_A1_UI
         {
             m_socWorker.Close();
         }
-
     }
 }
