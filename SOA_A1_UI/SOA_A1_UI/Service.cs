@@ -186,11 +186,8 @@ namespace SOA_A1_UI
 
             response = MessageLibrary.registryConnector.connectReg(message, regIP, regPort);
 
-            stream = MessageLibrary.ExecuteServiceMessage.ParseExecuteServiceMessage(response);
-
-            IFormatter formatter1 = new BinaryFormatter();
-            Data retData = (Data)formatter1.Deserialize(stream);
-
+            Data retData = MessageLibrary.ExecuteServiceMessage.ParseExecuteServiceMessage(response);
+            
             if (retData.message == "OK")
             {
                 log.logger(retData.message);
