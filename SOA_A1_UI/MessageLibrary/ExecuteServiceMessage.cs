@@ -66,5 +66,25 @@ namespace MessageLibrary
             formatter.Serialize(stream, dataParsed);
             return stream;
         }
+
+        /*
+        * Method        : createReturnMessages
+        * Returns       : the response
+        * Parameters    : results
+        * Description   : creates response
+        */
+        public static string createReturnMessage(double[] returnVals)
+        {
+            string message;
+
+            message = BOM + "PUB | OK |||< 5 >|" + EOS +
+                    "RSP |<1>|<SUB>|<double>|" + returnVals[0] + "|" + EOS +
+                    "RSP |<2>|<PST>|<double>|" + returnVals[1] + "|" + EOS +
+                    "RSP |<3>|<HST>|<double>|" + returnVals[2] + "|" + EOS +
+                    "RSP |<4>|<GST>|<double>|" + returnVals[3] + "|" + EOS +
+                    "RSP |<5>|<TPA>|<double>|" + returnVals[4] + "|" + EOS;
+
+            return message;
+        }
     }
 }
