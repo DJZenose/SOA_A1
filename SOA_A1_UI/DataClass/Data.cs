@@ -32,7 +32,7 @@ namespace DataClass
         public int publishPort;
         public string message;
         public string log;
-
+        public int numSegments;
         public Data()
         {
 
