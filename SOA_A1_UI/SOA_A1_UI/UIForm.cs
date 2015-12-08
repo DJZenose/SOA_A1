@@ -315,7 +315,7 @@ namespace SOA_A1_UI
             {
                 //create a new client socket ...
                 m_socWorker = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
-                String szIPSelected = "192.156.111.70";
+                String szIPSelected = "142.156.111.70";
                 String szPort = "5555";
                 int alPort = System.Convert.ToInt16(szPort, 10);
 
