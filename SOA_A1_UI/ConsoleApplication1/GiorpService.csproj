@@ -59,6 +59,10 @@
       <Project>{3766e486-1a9a-423e-9bd3-305aec0e6ee6}</Project>
       <Name>MessageLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Purchase-Totaller_BL\Purchase-Totaller_BL.csproj">
+      <Project>{af8834b4-62a7-4732-bbed-b9173c1d2213}</Project>
+      <Name>Purchase-Totaller_BL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
