@@ -37,6 +37,7 @@ namespace SOA_A1_UI
         private const int minimum = 0, firstIndex = 0;
         public Data dataLocal = new Data();
         Logging log = new Logging();
+        Service ser = new Service();
         public UIForm()
         {
             InitializeComponent();
@@ -45,7 +46,8 @@ namespace SOA_A1_UI
             dataLocal.serviceTag = "GIORP-TOTAL";
             dataLocal.publishIP = serviceIP;
             dataLocal.publishPort = Convert.ToInt32(servicePort);
-            PublishService();
+            ser.RegisterTeam(dataLocal, serviceIP, Convert.ToInt32(servicePort));
+            ser.PublishService(dataLocal.publishIP, dataLocal.publishPort, serviceIP, Convert.ToInt32(servicePort), dataLocal.teamName, dataLocal.teamID);
         }
         //useless, but im too scared to remove it
         //windows forms are unpredictable when it
@@ -96,31 +98,23 @@ namespace SOA_A1_UI
         */
         private void Call_PurchaseTotaller(double totalItemPrice, string regionCode)
         {
+            //put the values from the form into the data obj
+            dataLocal.argValue1 = totalItemPrice;
+            dataLocal.argValue2 = regionCode;
 
-            cmdConnect();
-            cmdSendData();
-            cmdReceiveData();
-            cmdClose();
-                /*
-            try
+            //call the query service with the datalocal
+            dataLocal = ser.QueryService(dataLocal, serviceIP, Convert.ToInt32(servicePort));
+            if (dataLocal.message == "OK")
             {
-                //check to see that the itemprice is valid & the postal code is valid
-                if (totalItemPrice >= 0 && regionCode != "")
-                {
-                    //call the service here with the needed variables in the right order
-                    StartClient();
-                }
-                else
-                {
-                    //JUST A TEST TO TRY LOGGING //CURRENTLY SUCCESSFULL
-                    throw new Exception("Input Error: Invalid Region");
-                }
+                //if the query comes back with an OK, execute the command
+                dataLocal = ser.ExecuteService(dataLocal, serviceIP, Convert.ToInt32(servicePort));
+                itemTotal.Text = dataLocal.respValue[0].ToString();//sub
+                hstTotal.Text = dataLocal.respValue[1].ToString();//HST
+                pstTotal.Text = dataLocal.respValue[2].ToString();//PST
+                gstTotal.Text = dataLocal.respValue[3].ToString();//GST
+                totalPrice.Text = dataLocal.respValue[4].ToString();//GRAND TOTAL
             }
-            catch (Exception ex)
-            {
-                //use logerror to send the error message to the log file
-                logError(ex.Message);
-            }*/
+
         }
 
         /*
@@ -204,12 +198,12 @@ namespace SOA_A1_UI
         * Returns       : none
         * Parameters    : none
         * Description   : when the user clicks this the system attempts to register them to the registry.
-        */
+        
         private void Registerbtn_Click(object sender, EventArgs e)
         {
             RegisterTeam();
         }
-
+        */
         /*
         * Method        : unRegisterbtn_Click
         * Returns       : none
@@ -218,7 +212,7 @@ namespace SOA_A1_UI
         */
         private void unRegisterbtn_Click(object sender, EventArgs e)
         {
-            UnregisterTeam();
+            ser.UnregisterTeam(dataLocal, serviceIP, Convert.ToInt32(servicePort));
         }
         /*
         * Method        : cmdConnect

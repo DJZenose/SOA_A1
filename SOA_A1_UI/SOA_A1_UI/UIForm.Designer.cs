@@ -42,7 +42,6 @@
             this.GrabTotalBtn = new System.Windows.Forms.Button();
             this.ItemBox = new System.Windows.Forms.CheckedListBox();
             this.LoginBtn = new System.Windows.Forms.Button();
-            this.Registerbtn = new System.Windows.Forms.Button();
             this.regionCheck = new System.Windows.Forms.CheckedListBox();
             this.unRegisterbtn = new System.Windows.Forms.Button();
             this.IDValidLabel = new System.Windows.Forms.Label();
@@ -185,16 +184,6 @@
             this.LoginBtn.UseVisualStyleBackColor = true;
             this.LoginBtn.Click += new System.EventHandler(this.LoginBtn_Click);
             // 
-            // Registerbtn
-            // 
-            this.Registerbtn.Location = new System.Drawing.Point(200, 341);
-            this.Registerbtn.Name = "Registerbtn";
-            this.Registerbtn.Size = new System.Drawing.Size(161, 23);
-            this.Registerbtn.TabIndex = 17;
-            this.Registerbtn.Text = "Register Team";
-            this.Registerbtn.UseVisualStyleBackColor = true;
-            this.Registerbtn.Click += new System.EventHandler(this.Registerbtn_Click);
-            // 
             // regionCheck
             // 
             this.regionCheck.FormattingEnabled = true;
@@ -220,7 +209,7 @@
             // 
             // unRegisterbtn
             // 
-            this.unRegisterbtn.Location = new System.Drawing.Point(200, 370);
+            this.unRegisterbtn.Location = new System.Drawing.Point(200, 341);
             this.unRegisterbtn.Name = "unRegisterbtn";
             this.unRegisterbtn.Size = new System.Drawing.Size(161, 23);
             this.unRegisterbtn.TabIndex = 19;
@@ -231,7 +220,7 @@
             // IDValidLabel
             // 
             this.IDValidLabel.AutoSize = true;
-            this.IDValidLabel.Location = new System.Drawing.Point(262, 396);
+            this.IDValidLabel.Location = new System.Drawing.Point(262, 377);
             this.IDValidLabel.Name = "IDValidLabel";
             this.IDValidLabel.Size = new System.Drawing.Size(37, 13);
             this.IDValidLabel.TabIndex = 20;
@@ -245,7 +234,6 @@
             this.Controls.Add(this.IDValidLabel);
             this.Controls.Add(this.unRegisterbtn);
             this.Controls.Add(this.regionCheck);
-            this.Controls.Add(this.Registerbtn);
             this.Controls.Add(this.ItemBox);
             this.Controls.Add(this.GrabTotalBtn);
             this.Controls.Add(this.ItemPrices);
@@ -282,7 +270,6 @@
         private System.Windows.Forms.Button GrabTotalBtn;
         private System.Windows.Forms.CheckedListBox ItemBox;
         private System.Windows.Forms.Button LoginBtn;
-        private System.Windows.Forms.Button Registerbtn;
         private System.Windows.Forms.CheckedListBox regionCheck;
         private System.Windows.Forms.Button unRegisterbtn;
         private System.Windows.Forms.Label IDValidLabel;
