@@ -36,7 +36,7 @@ namespace SOA_A1_UI
         private Socket m_socWorker;
         private const int minimum = 0, firstIndex = 0;
         public Data dataLocal = new Data();
-        Logging log = new Logging();
+        Logging.Logging log = new Logging.Logging();
         Service ser = new Service();
         public UIForm()
         {

@@ -52,7 +52,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Logging.cs" />
     <Compile Include="Service.cs" />
     <Compile Include="UIForm.cs">
       <SubType>Form</SubType>
@@ -90,6 +89,10 @@
     <ProjectReference Include="..\DataClass\DataClass.csproj">
       <Project>{ffae9117-1464-4d63-a316-6ef0aea6d6b5}</Project>
       <Name>DataClass</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logging\Logging.csproj">
+      <Project>{3c92b4b8-080c-41e2-97b5-51c5b7b6d020}</Project>
+      <Name>Logging</Name>
     </ProjectReference>
     <ProjectReference Include="..\MessageLibrary\MessageLibrary.csproj">
       <Project>{3766e486-1a9a-423e-9bd3-305aec0e6ee6}</Project>

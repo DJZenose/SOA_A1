@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*************
+*Programmers    : Connor McQuade & Brandon Erb & Dallas Thibodeau
+*Professor      : Ed Barsalou
+*Date           : 6/12/2015
+*FILE           : registryConnector.cs
+*Description    : Generic Class for connecting to the registry
+**************/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;

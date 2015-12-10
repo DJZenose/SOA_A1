@@ -14,7 +14,7 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SOA_A1_UI
+namespace Logging
 {
     public class Logging
     {

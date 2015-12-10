@@ -23,7 +23,7 @@ namespace SOA_A1_UI
 {
     class Service
     {
-        Logging log = new Logging();
+        Logging.Logging log = new Logging.Logging();
         public string PublishService( string regIP, Int32 regPort, string teamName, string teamID)
         {
             string message;
