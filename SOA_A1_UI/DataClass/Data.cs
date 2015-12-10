@@ -42,10 +42,10 @@ namespace DataClass
             description = "Purchase Totaler";
             argPosition[0] = 1;
             argPosition[1] = 2;
-            argName[0] = "region"; //see stupid registry
-            argName[1] = "totals";
-            argDataType[0] = "string";
-            argDataType[1] = "double";
+            argName[0] = "totals"; //see stupid registry
+            argName[1] = "region"; 
+            argDataType[0] = "double";
+            argDataType[1] = "string";
             responsePos[0] = 1;
             responsePos[1] = 2;
             responsePos[2] = 3;
