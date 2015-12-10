@@ -108,7 +108,6 @@ namespace SOA_A1_UI
             if (dataLocal.message == "OK")
             {
                 //if the query comes back with an OK, execute the command
-                dataLocal = ser.ExecuteService(dataLocal, serviceIP, Convert.ToInt32(servicePort));
                 itemTotal.Text = dataLocal.respValue[0].ToString();//sub
                 hstTotal.Text = dataLocal.respValue[1].ToString();//HST
                 pstTotal.Text = dataLocal.respValue[2].ToString();//PST

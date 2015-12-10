@@ -33,10 +33,10 @@ namespace SOA_A1_UI
             publishData.teamName = teamName;
             publishData.teamID = teamID;
             publishData.serviceTag = "GIORP-TOTAL";
-            publishData.serviceName = "GiorpService";
+            publishData.serviceName = "totalPurchase";
             publishData.numArg = 2;
             publishData.numResp = 5;
-            publishData.description = "Purchase Totaler";
+            publishData.description = "PurchaseTotaler";
             publishData.argPosition[0] = 1;
             publishData.argPosition[1] = 2;
             publishData.argName[0] = "region"; //see stupid registry
@@ -60,15 +60,13 @@ namespace SOA_A1_UI
             publishData.respDataType[4] = "double";
             publishData.publishIP = regIP;
             publishData.publishPort = regPort;
-            publishData.securityLevel = 1;
+            publishData.securityLevel = 3;
 
             message = MessageLibrary.PublishServiceMessage.SendPublishServiceMessage(publishData);
 
             response = MessageLibrary.registryConnector.connectReg(message, regIP, regPort);
 
-            publishData = MessageLibrary.PublishServiceMessage.ParsePublishServiceMessage(response);
-
-            log.logger(publishData.message);
+            log.logger(response);
             return response;
         }
 
