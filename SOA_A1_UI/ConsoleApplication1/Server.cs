@@ -143,7 +143,8 @@ namespace Service
             Data dataFromClient = ExecuteServiceMessage.ParseExecuteServiceMessage(data);
             string message = QueryTeamMessage.SendQueryTeamMessage(dataFromClient);
             string answer = registryConnector.connectReg(message, registerIP, 3128);
-            string isOkay = QueryTeamMessage.ParseQueryTeamMessage(answer);
+            string isOkay = QueryTeamMessage.ParseQueryTeamMessage(dataFromClient, answer);
+            
 
             double[] returnedData = Purchase_Totaller_BL.Totaller.getTotal(dataFromClient.argValue2, dataFromClient.argValue1);
 

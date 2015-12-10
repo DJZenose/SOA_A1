@@ -45,20 +45,22 @@ namespace MessageLibrary
         * Parameters    : Stream of the class containing the needed data and a string of the message to be parsed
         * Description   : Builds string to send to the registry
         */
-        public static string ParseQueryTeamMessage (string message)
+        public static string ParseQueryTeamMessage (Data data, string message)
         {
           
 
-            char[] delimiterChars = { '|', '|', '|' };
+            char[] delimiterChars = {'|'};
             string[] words = message.Split(delimiterChars);
 
             if (words[1] == "OK")
             {
                 message = words[1];
+                data.log = message;
+
             }
             else
             {
-                
+                data.log = message;
             }
             return message;
         }
