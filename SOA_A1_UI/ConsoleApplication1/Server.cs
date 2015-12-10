@@ -31,6 +31,7 @@ namespace Service
         // Thread signal.
         public static ManualResetEvent allDone = new ManualResetEvent(false);
         public static string registerIP;
+        public static string registerPort;
 
         public AsynchronousSocketListener()
         {
@@ -43,7 +44,6 @@ namespace Service
 
             // Establish the local endpoint for the socket.
             // The DNS name of the computer
-            // running the listener is "host.contoso.com".
             IPHostEntry ipHostInfo = Dns.Resolve(Dns.GetHostName());
             IPAddress ipAddress = ipHostInfo.AddressList[0];
             IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 3001);
@@ -143,7 +143,7 @@ namespace Service
         {
             Data dataFromClient = ExecuteServiceMessage.ParseExecuteServiceMessage(data);
             string message = QueryTeamMessage.SendQueryTeamMessage(dataFromClient);
-            string answer = registryConnector.connectReg(message, registerIP, 3128);
+            string answer = registryConnector.connectReg(message, "127.0.0.1", 3128);
             string isOkay = QueryTeamMessage.ParseQueryTeamMessage(dataFromClient, answer);           
 
             double[] returnedData = Purchase_Totaller_BL.Totaller.getTotal(dataFromClient.argValue2, dataFromClient.argValue1);
