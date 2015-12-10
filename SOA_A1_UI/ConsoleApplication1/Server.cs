@@ -27,6 +27,7 @@ namespace Service
 
     public class AsynchronousSocketListener
     {
+        Logging.Logging log = new Logging.Logging();
         // Thread signal.
         public static ManualResetEvent allDone = new ManualResetEvent(false);
         public static string registerIP;
