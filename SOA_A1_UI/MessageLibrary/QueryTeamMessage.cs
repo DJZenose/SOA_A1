@@ -4,7 +4,7 @@
 *Date           : 6/12/2015
 *FILE           : QueryTeamMessage.cs
 *Description    : Class Library for Messaging
-**************/
+***************/
 using System;
 using System.Collections.Generic;
 using System.Linq;
