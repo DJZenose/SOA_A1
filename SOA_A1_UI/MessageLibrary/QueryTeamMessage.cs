@@ -47,8 +47,8 @@ namespace MessageLibrary
         */
         public static string ParseQueryTeamMessage (Data data, string message)
         {
-          
 
+            Logging.Logging log = new Logging.Logging();
             char[] delimiterChars = {'|'};
             string[] words = message.Split(delimiterChars);
 
@@ -56,11 +56,12 @@ namespace MessageLibrary
             {
                 message = words[1];
                 data.log = message;
-
+                log.logger(message);
             }
             else
             {
                 data.log = message;
+                log.logger(message);
             }
             return message;
         }
