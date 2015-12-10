@@ -50,9 +50,12 @@ namespace MessageLibrary
         * Parameters    : String of the response
         * Description   : Builds string to send to the registry
         */
-        public static string ParsePublishServiceMessage(string response)
+        public static Data ParsePublishServiceMessage(string response)
         {
-            return response;
+            Data retData = new Data();
+            retData.log = response;
+
+            return retData;
         }
     }
 }

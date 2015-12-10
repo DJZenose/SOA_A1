@@ -66,7 +66,9 @@ namespace SOA_A1_UI
 
             response = MessageLibrary.registryConnector.connectReg(message, regIP, regPort);
 
-            log.logger(response);
+            publishData = MessageLibrary.PublishServiceMessage.ParsePublishServiceMessage(response);
+
+            log.logger(publishData.message);
             return response;
         }
 
