@@ -23,6 +23,7 @@ namespace SOA_A1_UI
 {
     class Service
     {
+        
         Logging.Logging log = new Logging.Logging();
         public string PublishService( string regIP, Int32 regPort, string teamName, string teamID)
         {
@@ -39,10 +40,10 @@ namespace SOA_A1_UI
             publishData.description = "PurchaseTotaler";
             publishData.argPosition[0] = 1;
             publishData.argPosition[1] = 2;
-            publishData.argName[0] = "region"; //see stupid registry
-            publishData.argName[1] = "totals";
-            publishData.argDataType[0] = "string";
-            publishData.argDataType[1] = "double";
+            publishData.argName[0] = "totals"; //see stupid registry
+            publishData.argName[1] = "region";
+            publishData.argDataType[0] = "double";
+            publishData.argDataType[1] = "string";
             publishData.responsePos[0] = 1;
             publishData.responsePos[1] = 2;
             publishData.responsePos[2] = 3;
@@ -59,13 +60,12 @@ namespace SOA_A1_UI
             publishData.respDataType[3] = "double";
             publishData.respDataType[4] = "double";
             publishData.publishIP = regIP;
-            publishData.publishPort = regPort;
+            publishData.publishPort = 3001;
             publishData.securityLevel = 3;
 
             message = MessageLibrary.PublishServiceMessage.SendPublishServiceMessage(publishData);
 
             response = MessageLibrary.registryConnector.connectReg(message, regIP, regPort);
-
             log.logger(response);
             return response;
         }
@@ -154,7 +154,7 @@ namespace SOA_A1_UI
             string response;
 
             message = MessageLibrary.ExecuteServiceMessage.SendExecuteServiceMessage(data);
-            response = MessageLibrary.registryConnector.connectReg(message, data.publishIP, data.publishPort);
+            response = MessageLibrary.registryConnector.connectReg(message, data.publishIP, 3001);
 
             Data retData = MessageLibrary.ExecuteServiceMessage.ParseExecuteServiceMessage(response);
             
