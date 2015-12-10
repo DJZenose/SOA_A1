@@ -46,7 +46,7 @@ namespace Service
             // The DNS name of the computer
             IPHostEntry ipHostInfo = Dns.Resolve(Dns.GetHostName());
             IPAddress ipAddress = ipHostInfo.AddressList[0];
-            IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 3001);
+            IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 3000);
 
             // Create a TCP/IP socket.
             Socket listener = new Socket(AddressFamily.InterNetwork,

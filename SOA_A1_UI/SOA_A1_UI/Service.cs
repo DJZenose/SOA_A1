@@ -59,7 +59,7 @@ namespace SOA_A1_UI
             publishData.respDataType[2] = "double";
             publishData.respDataType[3] = "double";
             publishData.respDataType[4] = "double";
-            publishData.publishIP = regIP;
+            publishData.publishIP = "192.168.1.129";
             publishData.publishPort = 3001;
             publishData.securityLevel = 3;
 
@@ -154,7 +154,7 @@ namespace SOA_A1_UI
             string response;
 
             message = MessageLibrary.ExecuteServiceMessage.SendExecuteServiceMessage(data);
-            response = MessageLibrary.registryConnector.connectReg(message, data.publishIP, 3001);
+            response = MessageLibrary.registryConnector.connectReg(message, "192.168.1.129", 3001);
 
             Data retData = MessageLibrary.ExecuteServiceMessage.ParseExecuteServiceMessage(response);
             
