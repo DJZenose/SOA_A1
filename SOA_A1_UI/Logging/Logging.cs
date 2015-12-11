@@ -41,7 +41,7 @@ namespace Logging
             if (GrantAccess(path) == true)
             {
                 //if the access to the folder was successfull, write the error to the log file
-                System.IO.File.AppendAllText(path + "logFile.txt", DateTime.Now + ", SOA Client, C.McQuade-B.Erb-D.Thibodeau: " + errorMessage + Environment.NewLine);
+                System.IO.File.AppendAllText(path + "logFile.txt", DateTime.Now + ", C.McQuade-B.Erb-D.Thibodeau: " + errorMessage + Environment.NewLine);
             }
 
         }
