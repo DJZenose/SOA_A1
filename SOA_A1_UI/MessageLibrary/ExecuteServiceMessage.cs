@@ -109,10 +109,10 @@ namespace MessageLibrary
 
             dataParsed.message = dataUnassigned[1];
             dataParsed.numArg = Convert.ToInt32(dataUnassigned[4]);
-            dataParsed.respValue[0] = Convert.ToDouble(dataUnassigned[9]);
-            dataParsed.respValue[1] = Convert.ToDouble(dataUnassigned[14]);
-            dataParsed.respValue[2] = Convert.ToDouble(dataUnassigned[19]);
-            dataParsed.respValue[3] = Convert.ToDouble(dataUnassigned[24]);
+            dataParsed.respValue[0] = (double)Convert.ToDecimal(dataUnassigned[9]);
+            dataParsed.respValue[1] = (double)Convert.ToDecimal(dataUnassigned[14]);
+            dataParsed.respValue[2] = (double)Convert.ToDecimal(dataUnassigned[19]);
+            dataParsed.respValue[3] = (double)Convert.ToDecimal(dataUnassigned[24]);
             dataParsed.respValue[4] = Convert.ToDouble(dataUnassigned[29]);
 
             //dataParsed.message = 
