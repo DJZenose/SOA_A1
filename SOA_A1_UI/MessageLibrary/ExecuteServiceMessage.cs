@@ -38,7 +38,6 @@ namespace MessageLibrary
             "ARG|" + data.argPosition[1] + "|" + data.argName[1] + "|" + data.argDataType[1] + "||" + data.argValue2 + "|" + EOS + EOM + EOS;
 
             return message;
-
         }
 
         /*
@@ -113,7 +112,7 @@ namespace MessageLibrary
             dataParsed.respValue[0] = Convert.ToDouble(dataUnassigned[9]);
             dataParsed.respValue[1] = Convert.ToDouble(dataUnassigned[14]);
             dataParsed.respValue[2] = Convert.ToDouble(dataUnassigned[19]);
-            dataParsed.respValue[3] = Convert.ToDouble(dataUnassigned[14]);
+            dataParsed.respValue[3] = Convert.ToDouble(dataUnassigned[24]);
             dataParsed.respValue[4] = Convert.ToDouble(dataUnassigned[29]);
 
             //dataParsed.message = 
