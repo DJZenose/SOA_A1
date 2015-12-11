@@ -35,7 +35,7 @@ namespace Purchase_Totaller_BL
                     case "PE":
                         regionNum = 3;
                         break;
-                    case "QZ":
+                    case "QC":
                         regionNum = 4;
                         break;
                     case "OB":

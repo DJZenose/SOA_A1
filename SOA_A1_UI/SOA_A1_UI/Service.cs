@@ -133,7 +133,7 @@ namespace SOA_A1_UI
 
             if (retData.message == "OK")
             {
-                ExecuteService(retData, retData.publishIP, retData.publishPort);
+                retData = ExecuteService(retData, retData.publishIP, retData.publishPort);
                 log.logger(retData.message);
                 return retData;
             }
@@ -156,7 +156,7 @@ namespace SOA_A1_UI
             message = MessageLibrary.ExecuteServiceMessage.SendExecuteServiceMessage(data);
             response = MessageLibrary.registryConnector.connectReg(message, "192.168.1.129", 3001);
 
-            Data retData = MessageLibrary.ExecuteServiceMessage.ParseExecuteServiceMessage(response);
+            Data retData = MessageLibrary.ExecuteServiceMessage.parseReturnMessage(response);
             
             if (retData.message == "OK")
             {

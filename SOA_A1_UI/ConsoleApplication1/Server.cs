@@ -141,16 +141,21 @@ namespace Service
 
         private static void messageRegister(Socket handler, String data)
         {
+            Logging.Logging log = new Logging.Logging();
+
             Data dataFromClient = ExecuteServiceMessage.ParseExecuteServiceMessage(data);
             string message = QueryTeamMessage.SendQueryTeamMessage(dataFromClient);
+            log.logger(message);
+
             string answer = registryConnector.connectReg(message, "127.0.0.1", 3128);
-            string isOkay = QueryTeamMessage.ParseQueryTeamMessage(dataFromClient, answer);           
+            string isOkay = QueryTeamMessage.ParseQueryTeamMessage(dataFromClient, answer);
+            log.logger(isOkay);
 
             double[] returnedData = Purchase_Totaller_BL.Totaller.getTotal(dataFromClient.argValue2, dataFromClient.argValue1);
 
-            string messageToClient = ExecuteServiceMessage.createReturnMessage(returnedData);
-
-            SendToClient(handler, messageToClient);
+            dataFromClient = ExecuteServiceMessage.createReturnMessage(returnedData);
+            log.logger(dataFromClient.log);
+            SendToClient(handler, dataFromClient.message);
         }
 
         private static void SendToClient(Socket handler, String data)

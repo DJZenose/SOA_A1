@@ -86,18 +86,38 @@ namespace MessageLibrary
         * Parameters    : results
         * Description   : creates response
         */
-        public static string createReturnMessage(double[] returnVals)
+        public static Data createReturnMessage(double[] returnVals)
         {
-            string message;
+            Data data = new Data();
+            
+            data.message = BOM + "PUB|OK|||5|" + EOS +
+                    "RSP|1|SUB|double|" + returnVals[0] + "|" + EOS +
+                    "RSP|2|PST|double|" + returnVals[1] + "|" + EOS +
+                    "RSP|3|HST|double|" + returnVals[2] + "|" + EOS +
+                    "RSP|4|GST|double|" + returnVals[3] + "|" + EOS +
+                    "RSP|5|TPA|double|" + returnVals[4] + "|" + EOS;
+            data.log = data.message;
+            return data;
+        }
 
-            message = BOM + "PUB | OK ||| 5 |" + EOS +
-                    "RSP |1|SUB|double|" + returnVals[0] + "|" + EOS +
-                    "RSP |2|PST|double|" + returnVals[1] + "|" + EOS +
-                    "RSP |3|HST|double|" + returnVals[2] + "|" + EOS +
-                    "RSP |4|GST|double|" + returnVals[3] + "|" + EOS +
-                    "RSP |5|TPA|double|" + returnVals[4] + "|" + EOS;
+        public static Data parseReturnMessage(string message)
+        {
 
-            return message;
+            Data dataParsed = new Data();
+            char[] delimiters = new char[] { '|' };
+            string[] dataUnassigned = message.Split(delimiters);
+
+            dataParsed.message = dataUnassigned[1];
+            dataParsed.numArg = Convert.ToInt32(dataUnassigned[4]);
+            dataParsed.respValue[0] = Convert.ToDouble(dataUnassigned[9]);
+            dataParsed.respValue[1] = Convert.ToDouble(dataUnassigned[14]);
+            dataParsed.respValue[2] = Convert.ToDouble(dataUnassigned[19]);
+            dataParsed.respValue[3] = Convert.ToDouble(dataUnassigned[14]);
+            dataParsed.respValue[4] = Convert.ToDouble(dataUnassigned[29]);
+
+            //dataParsed.message = 
+
+            return dataParsed;
         }
 
     }

@@ -108,11 +108,11 @@ namespace SOA_A1_UI
             if (dataLocal.message == "OK")
             {
                 //if the query comes back with an OK, execute the command
-                itemTotal.Text = dataLocal.respValue[0].ToString();//sub
-                hstTotal.Text = dataLocal.respValue[1].ToString();//HST
-                pstTotal.Text = dataLocal.respValue[2].ToString();//PST
-                gstTotal.Text = dataLocal.respValue[3].ToString();//GST
-                totalPrice.Text = dataLocal.respValue[4].ToString();//GRAND TOTAL
+                itemTotal.Text = string.Format("{0:0.00}", Convert.ToDecimal(dataLocal.respValue[0].ToString()));//SUB
+                hstTotal.Text = string.Format("{0:0.00}", Convert.ToDecimal(dataLocal.respValue[1].ToString()));//HST
+                pstTotal.Text = string.Format("{0:0.00}", Convert.ToDecimal(dataLocal.respValue[2].ToString()));//PST
+                gstTotal.Text = string.Format("{0:0.00}", Convert.ToDecimal(dataLocal.respValue[3].ToString()));//GST
+                totalPrice.Text = string.Format("{0:0.00}", Convert.ToDecimal(dataLocal.respValue[4].ToString()));//GRAND TOTAL
             }
 
         }
