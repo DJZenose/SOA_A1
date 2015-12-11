@@ -52,35 +52,31 @@ namespace MessageLibrary
             char[] delimiters = new char[] { '|' };
             double temp;
             string[] dataUnassigned = dataToParse.Split(delimiters);
+            
+            dataParsed.teamName = dataUnassigned[2];
+            dataParsed.teamID = dataUnassigned[3];
+            dataParsed.serviceName = dataUnassigned[6];
+            dataParsed.numArg = Convert.ToInt32(dataUnassigned[8]);
 
-            if (dataUnassigned[1] == "OK")
+            if (double.TryParse(dataUnassigned[11], out temp) == true)
             {
-                dataParsed.teamName = dataUnassigned[2];
-                dataParsed.teamID = dataUnassigned[3];
-                dataParsed.serviceName = dataUnassigned[5];
-                dataParsed.numArg = Convert.ToInt32(dataUnassigned[6]);
-
-                if (double.TryParse(dataUnassigned[11], out temp) == true)
-                {
-                    dataParsed.argPosition[0] = Convert.ToInt32(dataUnassigned[8]);
-                    dataParsed.argName[0] = dataUnassigned[9];
-                    dataParsed.argValue1 = Convert.ToDouble(dataUnassigned[11]);
-                    dataParsed.argPosition[1] = Convert.ToInt32(dataUnassigned[13]);
-                    dataParsed.argName[1] = dataUnassigned[14];
-                    dataParsed.argValue2 = dataUnassigned[16];
-                }
-                else
-                {
-                    dataParsed.argPosition[1] = Convert.ToInt32(dataUnassigned[8]);
-                    dataParsed.argName[1] = dataUnassigned[9];
-                    dataParsed.argValue2 = dataUnassigned[11];
-                    dataParsed.argPosition[0] = Convert.ToInt32(dataUnassigned[13]);
-                    dataParsed.argName[0] = dataUnassigned[14];
-                    dataParsed.argValue1 = Convert.ToInt32(dataUnassigned[16]);
-                }
+                dataParsed.argPosition[0] = Convert.ToInt32(dataUnassigned[12]);
+                dataParsed.argName[0] = dataUnassigned[13];
+                dataParsed.argValue1 = Convert.ToDouble(dataUnassigned[16]);
+                dataParsed.argPosition[1] = Convert.ToInt32(dataUnassigned[18]);
+                dataParsed.argName[1] = dataUnassigned[19];
+                dataParsed.argValue2 = dataUnassigned[22];
             }
-
-
+            else
+            {
+                dataParsed.argPosition[0] = Convert.ToInt32(dataUnassigned[12]);
+                dataParsed.argName[0] = dataUnassigned[13];
+                dataParsed.argValue1 = Convert.ToDouble(dataUnassigned[16]);
+                dataParsed.argPosition[1] = Convert.ToInt32(dataUnassigned[18]);
+                dataParsed.argName[1] = dataUnassigned[19];
+                dataParsed.argValue2 = dataUnassigned[22];
+            }
+                
             return dataParsed;
         }
 
