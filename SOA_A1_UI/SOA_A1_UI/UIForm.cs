@@ -85,10 +85,8 @@ namespace SOA_A1_UI
                     totalItemPrice += itemCosts[i];
                 }
             }
-            //display the users total purchase (might change this to an onclick event)
-            itemTotal.Text = totalItemPrice.ToString();
 
-            Call_PurchaseTotaller(totalItemPrice, regionCode);
+            Call_PurchaseTotaller(Convert.ToDouble(Pricetxt.Text), regionCode);
         }
         /*
         * Method        : Call_PurchaseTotaller
