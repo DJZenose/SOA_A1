@@ -13,9 +13,9 @@ namespace Purchase_Totaller_BL
             int regionNum = 0;
             double[] finalValues = new double[5] {0,0,0,0,0};
                                         //NL/NS/NB/PE////QC////ON//MB///SK///AB//BC/YT/NT/NU
-            double[] PST = new double[] { 1, 1, 1, 1.1, 1.095, 1, 1.07, 1.05, 1, 1, 1, 1, 1 };
-            double[] HST = new double[] { 1.13, 1.15, 1.13, 1, 1, 1.13, 1, 1, 1, 1.12, 1, 1 , 1};
-            double[] GST = new double[] { 1, 1, 1, 1.05, 1.05, 1, 1.05, 1.05, 1.05, 1, 1.05, 1.05, 1.05 };
+            double[] PST = new double[] { 0, 0, 0, 0.1, 0.095, 0, 0.07, 0.05, 0, 0, 0, 0, 0};
+            double[] HST = new double[] { 0.13, 0.15, 0.13, 0, 0, 0.13, 0, 0, 0, 0.12, 0, 0, 0};
+            double[] GST = new double[] { 0, 0, 0, 0.05, 0.05, 0, 0.05, 0.05, 0.05, 0, 0.05, 0.05, 0.05};
 
 
             if ((regionArg == "NL" || regionArg == "NS" || regionArg == "NB" || regionArg == "PE" || regionArg == "QC" ||
@@ -67,10 +67,10 @@ namespace Purchase_Totaller_BL
                         break;
                 }
                 finalValues[0] = totalUnmodified;
-                finalValues[1] = totalUnmodified * (PST[regionNum] - 1);
-                finalValues[2] = totalUnmodified * (HST[regionNum] - 1);
-                finalValues[3] = totalUnmodified * (GST[regionNum] - 1);
-                finalValues[4] = totalUnmodified * PST[regionNum] * HST[regionNum] * GST[regionNum];
+                finalValues[1] = totalUnmodified * (PST[regionNum]);
+                finalValues[2] = totalUnmodified * (HST[regionNum]);
+                finalValues[3] = totalUnmodified * (GST[regionNum]);
+                finalValues[4] = totalUnmodified + finalValues[1] + finalValues[2] + finalValues[3];
             }
             else if (totalUnmodified <= 0)
             {
