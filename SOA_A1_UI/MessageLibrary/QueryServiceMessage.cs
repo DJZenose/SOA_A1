@@ -28,11 +28,11 @@ namespace MessageLibrary
         * Parameters    : Stream of the class containing the needed data
         * Description   : Builds string to send to the registry
         */
-        public static string SendQueryServiceMessage(Data data)
+        public static Data SendQueryServiceMessage(Data data)
         {
-            string message = BOM + "DRC|QUERY-SERVICE|" + data.teamName + "|" + data.teamID + "|"+ EOS +
+            data.message = BOM + "DRC|QUERY-SERVICE|" + data.teamName + "|" + data.teamID + "|"+ EOS +
                    "SRV|" + data.serviceTag + "||||||" + EOS + EOM + EOS;
-            return message;
+            return data;
         }
 
         /*
@@ -87,10 +87,13 @@ namespace MessageLibrary
                 //MCH
                 data.publishIP = words[50];
                 data.publishPort = Convert.ToInt32(words[51]);
+
+                data.log = message;
             }
             else
             {
                 data.message = message;
+                data.log = message;
             }
             return data;
         }

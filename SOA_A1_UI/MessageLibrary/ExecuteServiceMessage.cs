@@ -38,6 +38,7 @@ namespace MessageLibrary
             "ARG|" + data.argPosition[1] + "|" + data.argName[1] + "|" + data.argDataType[1] + "||" + data.argValue2 + "|" + EOS + EOM + EOS;
 
             return message;
+
         }
 
         /*

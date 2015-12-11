@@ -126,7 +126,8 @@ namespace SOA_A1_UI
             string message;
             string response;
 
-            message = MessageLibrary.QueryServiceMessage.SendQueryServiceMessage(data);
+            data = MessageLibrary.QueryServiceMessage.SendQueryServiceMessage(data);
+            message = data.message;
             response = MessageLibrary.registryConnector.connectReg(message, regIP, regPort);
 
             Data retData = MessageLibrary.QueryServiceMessage.ParseQueryServiceMessage(data,response);
@@ -134,12 +135,12 @@ namespace SOA_A1_UI
             if (retData.message == "OK")
             {
                 retData = ExecuteService(retData, retData.publishIP, retData.publishPort);
-                log.logger(retData.message);
+                log.logger(retData.log);
                 return retData;
             }
             else
             {
-                log.logger(retData.message);
+                log.logger(retData.log);
                 //error log
             }
 
@@ -157,7 +158,10 @@ namespace SOA_A1_UI
             response = MessageLibrary.registryConnector.connectReg(message, "192.168.1.129", 3001);
 
             Data retData = MessageLibrary.ExecuteServiceMessage.parseReturnMessage(response);
-            
+
+            retData.teamID = data.teamID;
+            retData.teamName = data.teamName;
+
             if (retData.message == "OK")
             {
                 log.logger(retData.message);
@@ -168,6 +172,8 @@ namespace SOA_A1_UI
                 log.logger(retData.message);
                 //error log
             }
+
+
 
             return retData;
         }

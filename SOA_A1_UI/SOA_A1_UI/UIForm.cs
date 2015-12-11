@@ -71,6 +71,12 @@ namespace SOA_A1_UI
             string regionCode = "";
             List<double> itemCosts = new List<double>() { 8.25, 2.99, 3.99, 5.00 };
 
+            itemTotal.Text = "";
+            hstTotal.Text = "";
+            pstTotal.Text = "";
+            gstTotal.Text = "";
+            totalPrice.Text = "";
+
             if (regionCheck.CheckedItems.Count != minimum)
             {
                 regionCode = regionCheck.CheckedItems[firstIndex].ToString();
@@ -97,6 +103,9 @@ namespace SOA_A1_UI
         */
         private void Call_PurchaseTotaller(double totalItemPrice, string regionCode)
         {
+            dataLocal.message = "";
+            dataLocal.log = "";
+
             //put the values from the form into the data obj
             dataLocal.argValue1 = totalItemPrice;
             dataLocal.argValue2 = regionCode;
@@ -112,7 +121,7 @@ namespace SOA_A1_UI
                 gstTotal.Text = string.Format("{0:0.00}", Convert.ToDecimal(dataLocal.respValue[3].ToString()));//GST
                 totalPrice.Text = string.Format("{0:0.00}", Convert.ToDecimal(dataLocal.respValue[4].ToString()));//GRAND TOTAL
             }
-
+           
         }
 
         /*
