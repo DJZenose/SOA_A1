@@ -11,13 +11,14 @@ namespace Purchase_Totaller_BL
         public static double[] getTotal(string regionArg, double totalUnmodified)
         {
             int regionNum = 0;
-            double[] finalValues = new double[5];
+            double[] finalValues = new double[5] {0,0,0,0,0};
+                                        //NL/NS/NB/PE////QC////ON//MB///SK///AB//BC/YT/NT/NU
             double[] PST = new double[] { 1, 1, 1, 1.1, 1.095, 1, 1.07, 1.05, 1, 1, 1, 1, 1 };
             double[] HST = new double[] { 1.13, 1.15, 1.13, 1, 1, 1.13, 1, 1, 1, 1.12, 1, 1 , 1};
             double[] GST = new double[] { 1, 1, 1, 1.05, 1.05, 1, 1.05, 1.05, 1.05, 1, 1.05, 1.05, 1.05 };
 
 
-            if ((regionArg == "NL" || regionArg == "NS" || regionArg == "NB" || regionArg == "PE" || regionArg == "QZ" ||
+            if ((regionArg == "NL" || regionArg == "NS" || regionArg == "NB" || regionArg == "PE" || regionArg == "QC" ||
                 regionArg == "ON" || regionArg == "MB" || regionArg == "SK" || regionArg == "AB" || regionArg == "BC" ||
                 regionArg == "YT" || regionArg == "NT" || regionArg == "NU" ) && totalUnmodified > 0)
             {
