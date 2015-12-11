@@ -46,12 +46,13 @@
             this.IDValidLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Pricetxt = new System.Windows.Forms.TextBox();
+            this.Registerbtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ItemTotallbl
             // 
             this.ItemTotallbl.AutoSize = true;
-            this.ItemTotallbl.Location = new System.Drawing.Point(10, 296);
+            this.ItemTotallbl.Location = new System.Drawing.Point(164, 325);
             this.ItemTotallbl.Name = "ItemTotallbl";
             this.ItemTotallbl.Size = new System.Drawing.Size(59, 13);
             this.ItemTotallbl.TabIndex = 2;
@@ -60,7 +61,7 @@
             // itemTotal
             // 
             this.itemTotal.AutoSize = true;
-            this.itemTotal.Location = new System.Drawing.Point(142, 296);
+            this.itemTotal.Location = new System.Drawing.Point(296, 325);
             this.itemTotal.Name = "itemTotal";
             this.itemTotal.Size = new System.Drawing.Size(28, 13);
             this.itemTotal.TabIndex = 3;
@@ -69,7 +70,7 @@
             // pstTotal
             // 
             this.pstTotal.AutoSize = true;
-            this.pstTotal.Location = new System.Drawing.Point(142, 319);
+            this.pstTotal.Location = new System.Drawing.Point(296, 348);
             this.pstTotal.Name = "pstTotal";
             this.pstTotal.Size = new System.Drawing.Size(28, 13);
             this.pstTotal.TabIndex = 5;
@@ -78,7 +79,7 @@
             // PST
             // 
             this.PST.AutoSize = true;
-            this.PST.Location = new System.Drawing.Point(10, 319);
+            this.PST.Location = new System.Drawing.Point(164, 348);
             this.PST.Name = "PST";
             this.PST.Size = new System.Drawing.Size(31, 13);
             this.PST.TabIndex = 4;
@@ -87,7 +88,7 @@
             // hstTotal
             // 
             this.hstTotal.AutoSize = true;
-            this.hstTotal.Location = new System.Drawing.Point(142, 342);
+            this.hstTotal.Location = new System.Drawing.Point(296, 371);
             this.hstTotal.Name = "hstTotal";
             this.hstTotal.Size = new System.Drawing.Size(28, 13);
             this.hstTotal.TabIndex = 7;
@@ -96,7 +97,7 @@
             // HST
             // 
             this.HST.AutoSize = true;
-            this.HST.Location = new System.Drawing.Point(10, 342);
+            this.HST.Location = new System.Drawing.Point(164, 371);
             this.HST.Name = "HST";
             this.HST.Size = new System.Drawing.Size(32, 13);
             this.HST.TabIndex = 6;
@@ -105,7 +106,7 @@
             // gstTotal
             // 
             this.gstTotal.AutoSize = true;
-            this.gstTotal.Location = new System.Drawing.Point(142, 363);
+            this.gstTotal.Location = new System.Drawing.Point(296, 392);
             this.gstTotal.Name = "gstTotal";
             this.gstTotal.Size = new System.Drawing.Size(28, 13);
             this.gstTotal.TabIndex = 9;
@@ -114,7 +115,7 @@
             // GST
             // 
             this.GST.AutoSize = true;
-            this.GST.Location = new System.Drawing.Point(10, 363);
+            this.GST.Location = new System.Drawing.Point(164, 392);
             this.GST.Name = "GST";
             this.GST.Size = new System.Drawing.Size(32, 13);
             this.GST.TabIndex = 8;
@@ -123,7 +124,7 @@
             // totalPrice
             // 
             this.totalPrice.AutoSize = true;
-            this.totalPrice.Location = new System.Drawing.Point(142, 385);
+            this.totalPrice.Location = new System.Drawing.Point(296, 414);
             this.totalPrice.Name = "totalPrice";
             this.totalPrice.Size = new System.Drawing.Size(28, 13);
             this.totalPrice.TabIndex = 11;
@@ -132,7 +133,7 @@
             // TotalPricelbl
             // 
             this.TotalPricelbl.AutoSize = true;
-            this.TotalPricelbl.Location = new System.Drawing.Point(10, 385);
+            this.TotalPricelbl.Location = new System.Drawing.Point(164, 414);
             this.TotalPricelbl.Name = "TotalPricelbl";
             this.TotalPricelbl.Size = new System.Drawing.Size(58, 13);
             this.TotalPricelbl.TabIndex = 10;
@@ -146,7 +147,7 @@
             "4.50",
             "2.99",
             "10.99"});
-            this.ItemPrices.Location = new System.Drawing.Point(139, 7);
+            this.ItemPrices.Location = new System.Drawing.Point(36, 12);
             this.ItemPrices.Name = "ItemPrices";
             this.ItemPrices.Size = new System.Drawing.Size(36, 17);
             this.ItemPrices.TabIndex = 13;
@@ -154,7 +155,7 @@
             // 
             // GrabTotalBtn
             // 
-            this.GrabTotalBtn.Location = new System.Drawing.Point(9, 270);
+            this.GrabTotalBtn.Location = new System.Drawing.Point(163, 299);
             this.GrabTotalBtn.Name = "GrabTotalBtn";
             this.GrabTotalBtn.Size = new System.Drawing.Size(161, 23);
             this.GrabTotalBtn.TabIndex = 14;
@@ -194,7 +195,7 @@
             "YT",
             "NT",
             "NU"});
-            this.regionCheck.Location = new System.Drawing.Point(31, 65);
+            this.regionCheck.Location = new System.Drawing.Point(185, 94);
             this.regionCheck.Name = "regionCheck";
             this.regionCheck.Size = new System.Drawing.Size(121, 199);
             this.regionCheck.TabIndex = 18;
@@ -202,7 +203,7 @@
             // 
             // unRegisterbtn
             // 
-            this.unRegisterbtn.Location = new System.Drawing.Point(9, 8);
+            this.unRegisterbtn.Location = new System.Drawing.Point(168, 35);
             this.unRegisterbtn.Name = "unRegisterbtn";
             this.unRegisterbtn.Size = new System.Drawing.Size(161, 23);
             this.unRegisterbtn.TabIndex = 19;
@@ -213,16 +214,17 @@
             // IDValidLabel
             // 
             this.IDValidLabel.AutoSize = true;
-            this.IDValidLabel.Location = new System.Drawing.Point(275, 384);
+            this.IDValidLabel.Location = new System.Drawing.Point(61, 12);
             this.IDValidLabel.Name = "IDValidLabel";
             this.IDValidLabel.Size = new System.Drawing.Size(37, 13);
             this.IDValidLabel.TabIndex = 20;
             this.IDValidLabel.Text = "NO ID";
+            this.IDValidLabel.Visible = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 40);
+            this.label1.Location = new System.Drawing.Point(165, 69);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 21;
@@ -230,16 +232,27 @@
             // 
             // Pricetxt
             // 
-            this.Pricetxt.Location = new System.Drawing.Point(75, 37);
+            this.Pricetxt.Location = new System.Drawing.Point(229, 66);
             this.Pricetxt.Name = "Pricetxt";
             this.Pricetxt.Size = new System.Drawing.Size(100, 20);
             this.Pricetxt.TabIndex = 22;
+            // 
+            // Registerbtn
+            // 
+            this.Registerbtn.Location = new System.Drawing.Point(168, 12);
+            this.Registerbtn.Name = "Registerbtn";
+            this.Registerbtn.Size = new System.Drawing.Size(161, 23);
+            this.Registerbtn.TabIndex = 23;
+            this.Registerbtn.Text = "Register Team";
+            this.Registerbtn.UseVisualStyleBackColor = true;
+            this.Registerbtn.Click += new System.EventHandler(this.Registerbtn_Click);
             // 
             // UIForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(185, 406);
+            this.ClientSize = new System.Drawing.Size(521, 454);
+            this.Controls.Add(this.Registerbtn);
             this.Controls.Add(this.Pricetxt);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.IDValidLabel);
@@ -284,6 +297,7 @@
         private System.Windows.Forms.Label IDValidLabel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox Pricetxt;
+        private System.Windows.Forms.Button Registerbtn;
     }
 }
 

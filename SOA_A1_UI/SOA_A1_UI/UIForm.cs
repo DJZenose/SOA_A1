@@ -287,12 +287,18 @@ namespace SOA_A1_UI
                 MessageBox.Show(se.Message);
             }
         }
+
+        private void Registerbtn_Click(object sender, EventArgs e)
+        {
+            ser.RegisterTeam(dataLocal, serviceIP, Convert.ToInt32(servicePort));
+        }
+
         /*
-        * Method        : cmdClose
-        * Returns       : none
-        * Parameters    : none
-        * Description   : closes the connection to the address
-        */
+* Method        : cmdClose
+* Returns       : none
+* Parameters    : none
+* Description   : closes the connection to the address
+*/
         private void cmdClose()
         {
             log.logger("Closed Socket");
